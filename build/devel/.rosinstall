@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/wxf/catkin_ws/src/nav_april_odom_laser/build/devel/setup.sh
