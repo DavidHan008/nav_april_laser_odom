@@ -4,9 +4,9 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
 -->
 
 <launch>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_odom_laser)/maps/blank_map.yaml"/>
-  <include file="$(find nav_april_odom_laser)/launch/fake_move_base.launch" />
-  <node pkg="nav_april_odom_laser" type="serial_nav" name="serial_nav" output="screen"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
+  <include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" />
+  <node pkg="nav_april_laser_odom" type="serial_nav" name="serial_nav" output="screen"/>
   <!--node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /-->
   <!--node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
     <remap from="scan" to="scan"/>
@@ -15,6 +15,6 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
     <param name="resolution" value="0.025"/>
   </node-->
   <!--node pkg="tf" type="static_transform_publisher" name="link_to_laser" args="0 0 0 0 0 0 1 /base_link /laser 10" /-->
-  <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
-  <node pkg="nav_april_odom_laser" type="nav_control" name="nav_control" output="screen"/>
+  <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /world2 /world1 100" />
+  <node pkg="nav_april_laser_odom" type="nav_control" name="nav_control" output="screen"/>
 </launch>

@@ -56,7 +56,7 @@ int main(int argc, char** argv)
   ROS_INFO("move_base_square.cpp start...");
 
   //How big is the square we want the robot to navigate?
-  double square_size = 1;
+  double square_size = 1.2;
 
   //Create a list to hold the target quaternions (orientations)
   geometry_msgs::Quaternion quaternions[4];
@@ -72,40 +72,72 @@ int main(int argc, char** argv)
 
   //a pose consisting of a position and orientation in the map frame.
   geometry_msgs::Point point;
-  geometry_msgs::Pose pose_list[4];
-  point.x = square_size;
+  geometry_msgs::Pose pose_list[9];
+  //first point
+  point.x = 0.0;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[0].position = point;
-  pose_list[0].orientation = quaternions[0];
-
-  point.x = square_size;
-  point.y = square_size;
-  point.z = 0.0;
-  pose_list[1].position = point;
-  pose_list[1].orientation = quaternions[1];
-
-  point.x = 0.0;
-  point.y = square_size;
-  point.z = 0.0;
-  pose_list[2].position = point;
-  pose_list[2].orientation = quaternions[2];
-
-  point.x = 0.0;
+  pose_list[0].orientation = quaternions[3];
+//second point
+  point.x=square_size;
   point.y = 0.0;
   point.z = 0.0;
+  pose_list[1].position = point;
+  pose_list[1].orientation =quaternions[3];
+//third point
+  point.x = square_size*2;
+  point.y = 0.0;
+  point.z = 0.0;
+  pose_list[2].position = point;
+  pose_list[2].orientation = quaternions[0];
+//forth point
+  point.x=square_size*2;
+  point.y=square_size;
+  point.z = 0.0;
   pose_list[3].position = point;
-  pose_list[3].orientation = quaternions[3];
+  pose_list[3].orientation = quaternions[0];
+//fifth point
+
+  point.x=square_size*2;
+  point.y=square_size*2;
+  point.z = 0.0;
+  pose_list[4].position = point;
+  pose_list[4].orientation = quaternions[1];
+//sixth point
+  point.x=square_size;
+  point.y=square_size*2;
+  point.z = 0.0;
+  pose_list[5].position = point;
+  pose_list[5].orientation = quaternions[1];
+//seventh point
+  point.x=0.0;
+  point.y=square_size*2;
+  point.z = 0.0;
+  pose_list[6].position = point;
+  pose_list[6].orientation = quaternions[2];
+//eighth point
+  point.x=0.0;
+  point.y=square_size;
+  point.z = 0.0;
+  pose_list[7].position = point;
+  pose_list[7].orientation = quaternions[2];
+// last point
+  point.x=0.0;
+  point.y=0.0;
+  point.z = 0.0;
+  pose_list[8].position = point;
+  pose_list[8].orientation = quaternions[3];
 
   //Initialize the visualization markers for RViz
   init_markers(&line_list);
 
   //Set a visualization marker at each waypoint
-  for(int i = 0; i < 4; i++)
+  for(int i = 0; i < 9; i++)
   {
     line_list.points.push_back(pose_list[i].position);
   }
-
+marker_pub.publish(line_list);
   //Publisher to manually control the robot (e.g. to stop it, queue_size=5)
   cmdVelPub = node.advertise<geometry_msgs::Twist>(topic, 5);
 
@@ -124,7 +156,7 @@ int main(int argc, char** argv)
   //Initialize a counter to track waypoints
   int count = 0;
   //Cycle through the four waypoints
-  while( (count < 4) && (ros::ok()) )
+  while( (count < 9) && (ros::ok()) )
   {
      //Update the marker display
      marker_pub.publish(line_list);
