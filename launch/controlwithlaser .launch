@@ -5,6 +5,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
 
 <launch>
   <include file="/home/nrsl_nuc/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node"/>
   <node pkg="nav_april_laser_odom" type="image_pub_nav" name="image_pub_nav"/>
   <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector">
     <rosparam param="tag_descriptions">[
@@ -70,7 +71,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
     </rosparam>
   </node>
   <node pkg="nav_april_laser_odom" type="tf_listener" name="tf_listener" output="screen"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml" output="screen"/>
   <include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" />
   <node pkg="nav_april_laser_odom" type="serial_nav" name="serial_nav" output="screen"/>
   <!--node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /-->
@@ -80,7 +81,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
     <param name="map_update_interval" value="2"/>
     <param name="resolution" value="0.025"/>
   </node-->
-  <node pkg="tf" type="static_transform_publisher" name="link_to_laser" args="0 0 0 0 0 0 1 /base_link /laser 10" />
-  <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /world2 /world1 100" />
+  <node pkg="tf" type="static_transform_publisher" name="link_to_laser" args="0 0 0 0 0 0 1 /base_link1 /laser 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /world2 /map 100" />
   <node pkg="nav_april_laser_odom" type="nav_control" name="nav_control" output="screen"/>
 </launch>

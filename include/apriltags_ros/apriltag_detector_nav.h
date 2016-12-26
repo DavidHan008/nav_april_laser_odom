@@ -68,9 +68,12 @@ private:
   //ros::Publisher odomAndpose_pub_;
   //tf::Transform turtle_odom;
   void OdomCb(const nav_msgs::OdometryConstPtr& msg);
-  tf::Transform tag2world,world2tag;
+  tf::Transform tag2world,world2tag,camera2base;
   tf::StampedTransform base2odom,odom2map;
   tf::Transform map2world,odom2world;
+  double deltax=0.03;
+ // double deltax1=0.04;
+double deltaxx=0.0;
   bool lookfor_tf();
   //test for tag_id
   /*

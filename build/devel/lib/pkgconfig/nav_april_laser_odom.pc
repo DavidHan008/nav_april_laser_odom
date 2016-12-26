@@ -1,8 +1,0 @@
-prefix=/home/wxf/catkin_ws/src/nav_april_odom_laser/build/devel
-
-Name: nav_april_laser_odom
-Description: Description of nav_april_laser_odom
-Version: 0.0.0
-Cflags: -I/home/wxf/catkin_ws/src/nav_april_odom_laser/build/devel/include -I/usr/include/eigen3
-Libs: -L/home/wxf/catkin_ws/src/nav_april_odom_laser/build/devel/lib 
-Requires: serial std_msgs geometry_msgs ethz_apriltag2 image_transport roscpp sensor_msgs nav_msgs tf cv_bridge message_runtime nodelet actionlib move_base_msgs

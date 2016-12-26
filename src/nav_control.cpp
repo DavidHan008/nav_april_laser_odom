@@ -15,6 +15,8 @@ ros::Publisher cmdVelPub;
 ros::Publisher marker_pub;
 ros::Subscriber id_sub;
 int id;
+//tag是相对于世界坐标系的存在，由于tag和相机位置可以直接得到，而相机和base还存在一个offset，所以这边要加入一个修正量
+double deltaxy=0.05;
 void shutdown(int sig)
 {
   cmdVelPub.publish(geometry_msgs::Twist());
@@ -87,40 +89,40 @@ int main(int argc, char** argv)
   geometry_msgs::Pose pose_list[9];
   int id2num[9]={0,4,8,9,10,6,2,1,0};
   //first point
-  point.x = 0.0;
+  point.x = 0.0-deltaxy;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[0].position = point;
   pose_list[0].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
 //second point
-  point.x=square_size;
+  point.x=square_size-deltaxy;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[1].position = point;
   pose_list[1].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
 //third point
   point.x = square_size*2;
-  point.y = 0.0;
+  point.y = 0.0+deltaxy;
   point.z = 0.0;
   pose_list[2].position = point;
   pose_list[2].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
 //forth point
   point.x=square_size*2;
-  point.y=-square_size;
+  point.y=-square_size+deltaxy;
   point.z = 0.0;
   pose_list[3].position = point;
   pose_list[3].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
 
 //fifth point
 
-  point.x=square_size*2;
+  point.x=square_size*2+deltaxy;
   point.y=-square_size*2;
   point.z = 0.0;
   pose_list[4].position = point;
   pose_list[4].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
 
 //sixth point
-  point.x=square_size;
+  point.x=square_size+deltaxy;
   point.y=-square_size*2;
   point.z = 0.0;
   pose_list[5].position = point;
@@ -128,19 +130,19 @@ int main(int argc, char** argv)
 
 //seventh point
   point.x=0.0;
-  point.y=-square_size*2;
+  point.y=-square_size*2-deltaxy;
   point.z = 0.0;
   pose_list[6].position = point;
   pose_list[6].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
 
 //eighth point
   point.x=0.0;
-  point.y=-square_size;
+  point.y=-square_size-deltaxy;
   point.z = 0.0;
   pose_list[7].position = point;
   pose_list[7].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
 // last point
-  point.x=0.0;
+  point.x=0.0-deltaxy;
   point.y=0.0;
   point.z = 0.0;
   pose_list[8].position = point;

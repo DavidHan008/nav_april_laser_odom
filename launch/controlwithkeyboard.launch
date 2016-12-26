@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="nav_april_laser_odom" type="serial_by_keyboard" name="serial_by_keyboard" output="screen"/>
+  <include file=$(find turtlebot_teleop)/launch/keyboard_teleop.launch
+</launch>

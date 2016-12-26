@@ -106,6 +106,11 @@ add_executable(tf_listener src/tf_listener.cpp)
 target_link_libraries(tf_listener ${catkin_LIBRARIES})
 add_executable(fake_topic_pub src/fake_topic_pub.cpp)
 target_link_libraries(fake_topic_pub ${catkin_LIBRARIES})
+
+add_executable(serial_by_keyboard src/serial_by_keyboard.cpp)
+target_link_libraries(serial_by_keyboard ${catkin_LIBRARIES})
+
+
 #############
 ## Install ##image_pub
 #############
