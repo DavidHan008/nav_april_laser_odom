@@ -56,6 +56,7 @@ class AprilTagDetector{
   image_transport::ImageTransport it_;
   image_transport::Subscriber image_sub_;
   image_transport::Publisher image_pub_;
+  ros::Publisher id_pub;
   //ros::Publisher detections_pub_;
   //ros::Publisher pose_pub_;
   tf::TransformBroadcaster tf_pub_;
@@ -69,7 +70,7 @@ private:
   void OdomCb(const nav_msgs::OdometryConstPtr& msg);
   tf::Transform tag2world,world2tag;
   tf::StampedTransform base2odom,odom2map;
-  tf::Transform map2world;
+  tf::Transform map2world,odom2world;
   bool lookfor_tf();
   //test for tag_id
   /*

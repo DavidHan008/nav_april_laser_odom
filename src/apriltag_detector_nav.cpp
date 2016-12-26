@@ -16,6 +16,7 @@
 #include<eigen3/Eigen/Eigen>
 #include<Eigen/Eigen>
 #include<tf2_eigen/tf2_eigen.h>
+#include<std_msgs/String.h>
 namespace apriltags_ros{
 
 AprilTagDetector::AprilTagDetector(ros::NodeHandle& nh, ros::NodeHandle& pnh): it_(nh){
@@ -59,7 +60,7 @@ AprilTagDetector::AprilTagDetector(ros::NodeHandle& nh, ros::NodeHandle& pnh): i
   map2world.setIdentity();
   //***********************************************************************************************************
   image_pub_ = it_.advertise("tag_detections_image", 1);
-
+  id_pub=nh.advertise<std_msgs::String>("tag_id",1);
 }
 AprilTagDetector::~AprilTagDetector(){
   image_sub_.shutdown();
@@ -165,40 +166,46 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
     //tf_pub_.sendTransform(base2world);
     //get the map pose in the world frame
     //tf::StampedTransform base2odom,odom2map;
+    /*
+    std_msgs::String tagidd;
+    tagidd.data=id_str;
+    id_pub.publish(tagidd);
+    */
     bool look_tf_mark=lookfor_tf();
     if(look_tf_mark)
     {
         //ROS_INFO_STREAM("I have get the correct tf");
-        tf::Transform temp;
+        //tf::Transform temp;
         //temp.mult(camera2world_tf,base2odom.inverse());
-        double _yew_test1,_pich_test1,_roll_test1;
-        odom2map.getBasis().getEulerZYX(_yew_test1,_pich_test1,_roll_test1);
-        ROS_INFO("odom2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-                 odom2map.getOrigin().getX(),odom2map.getOrigin().getY(),odom2map.getOrigin().getZ(),
-                 _yew_test1*180/3.1415926,_pich_test1*180/3.1415926,_roll_test1*180/3.1415926);
+        //double _yew_test1,_pich_test1,_roll_test1;
+        //odom2map.getBasis().getEulerZYX(_yew_test1,_pich_test1,_roll_test1);
+        //ROS_INFO("odom2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
+                 //odom2map.getOrigin().getX(),odom2map.getOrigin().getY(),odom2map.getOrigin().getZ(),
+                 //_yew_test1*180/3.1415926,_pich_test1*180/3.1415926,_roll_test1*180/3.1415926);
         double _yew_test3,_pich_test3,_roll_test3;
         base2odom.getBasis().getEulerZYX(_yew_test3,_pich_test3,_roll_test3);
         ROS_INFO("base2odom is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  base2odom.getOrigin().getX(),base2odom.getOrigin().getY(),base2odom.getOrigin().getZ(),
                  _yew_test3*180/3.1415926,_pich_test3*180/3.1415926,_roll_test3*180/3.1415926);
-        temp.mult(odom2map,base2odom);
-        double _yew_test,_pich_test,_roll_test;
-        temp.getBasis().getEulerZYX(_yew_test,_pich_test,_roll_test);
+        //temp.mult(odom2map,base2odom);
+        //double _yew_test,_pich_test,_roll_test;
+        //temp.getBasis().getEulerZYX(_yew_test,_pich_test,_roll_test);
 
-        ROS_INFO("base2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-                 temp.getOrigin().getX(),temp.getOrigin().getY(),temp.getOrigin().getZ(),
-                 _yew_test*180/3.1415926,_pich_test*180/3.1415926,_roll_test*180/3.1415926);
+        //ROS_INFO("base2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
+                 //temp.getOrigin().getX(),temp.getOrigin().getY(),temp.getOrigin().getZ(),
+                 //_yew_test*180/3.1415926,_pich_test*180/3.1415926,_roll_test*180/3.1415926);
 
-        map2world.mult(camera2world_tf,temp.inverse());
-
+        //map2world.mult(camera2world_tf,temp.inverse());
+        odom2world.mult(camera2world_tf,base2odom.inverse());
         double _yew_test2,_pich_test2,_roll_test2;
-        map2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
-
+        //map2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
+        odom2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
         ROS_INFO("map2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-                 map2world.getOrigin().getX(),map2world.getOrigin().getY(),map2world.getOrigin().getZ(),
+                 odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),odom2world.getOrigin().getZ(),
                  _yew_test2*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);
 
-        tf_pub_.sendTransform(tf::StampedTransform(map2world,ros::Time::now(),"world","map"));
+        //tf_pub_.sendTransform(tf::StampedTransform(map2world,ros::Time::now(),"world","map"));
+        tf_pub_.sendTransform(tf::StampedTransform(odom2world,ros::Time::now(),"world","odom"));
     }
     else
     {
@@ -217,6 +224,7 @@ bool AprilTagDetector::lookfor_tf()
             ROS_ERROR("WXF1:%s",ex.what());
             return false;
     }
+    /*
     try{
         tf_listener.lookupTransform("map","odom",ros::Time(0),odom2map);
     }
@@ -224,6 +232,7 @@ bool AprilTagDetector::lookfor_tf()
             ROS_ERROR("WXF2:%s",ex.what());
             return false;
     }
+    */
     return true;
 }
 

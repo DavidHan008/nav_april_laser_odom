@@ -4,8 +4,10 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
 -->
 
 <launch>
-  <include file="/home/wxf/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
+  <include file="/home/nrsl_nuc/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
   <node pkg="nav_april_laser_odom" type="image_pub_nav" name="image_pub_nav"/>
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node"/>
+  <include file="/home/nrsl_nuc/catkin_ws/src/slam_karto/launch/karto_slam.launch" />
   <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector" output="screen">
     <rosparam param="tag_descriptions">[
       {id: 0, size: 0.034, x: 0.0, y: -0.0, z: 0.0},
@@ -66,7 +68,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
       {id: 46, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 47, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 48, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
-      {id: 49, size: 0.034, x: 1.0, y: 2.0, z: 0.0}]
+      {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
     </rosparam>
   </node>
   <node pkg="nav_april_laser_odom" type="tf_listener" name="tf_listener" output="screen"/>

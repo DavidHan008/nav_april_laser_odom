@@ -65,10 +65,10 @@ int main (int argc, char** argv){
     ros::init(argc, argv, "serial_nav");
     ros::NodeHandle nh;
     //将ros的“write”主题发送给串口
- ros::Subscriber write_sub = nh.subscribe("/cmd_vel_mux/input/teleop", 1000, write_callback);
-   //ros::Subscriber write_sub = nh.subscribe("/cmd_vel", 1000, write_callback);
+ //ros::Subscriber write_sub = nh.subscribe("/cmd_vel_mux/input/teleop", 1000, write_callback);
+   ros::Subscriber write_sub = nh.subscribe("/cmd_vel", 1000, write_callback);
     //将封装好的odom信息发布出去
-    ros::Publisher odom_pub=nh.advertise<nav_msgs::Odometry>("odom",50);
+    ros::Publisher odom_pub=nh.advertise<nav_msgs::Odometry>("odomInit",50);
     ros::Publisher pose_pub=nh.advertise<geometry_msgs::PoseStamped>("odom_init",20);
     static tf::TransformBroadcaster tf_pub;
     ros::Time currentTime;
@@ -113,7 +113,7 @@ int main (int argc, char** argv){
         {
             std::string s;
             s= ser.readline();
-            ROS_INFO_STREAM(s);
+            //ROS_INFO_STREAM(s);
             char * ss=(char*)s.data();
             p=strtok(ss,sep);
             Position[0]=atof(p);

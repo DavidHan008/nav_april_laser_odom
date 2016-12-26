@@ -13,29 +13,44 @@ private:
     tf::TransformBroadcaster tf_pub;
     ros::Subscriber odom_sub;
 private:
-    tf::StampedTransform map2world;
+    tf::StampedTransform map2world,odom2world;
     void odomCB(const nav_msgs::OdometryConstPtr msg);
 };
 tf_listener::tf_listener()
 {
     map2world.setIdentity();
     odom_pub=nh.advertise<nav_msgs::Odometry>("odom",5);
-    odom_sub=nh.subscribe("correctOdom",5,&tf_listener::odomCB,this);
+    //odom_sub=nh.subscribe("correctOdom",5,&tf_listener::odomCB,this);
+    odom_sub=nh.subscribe("odomInit",5,&tf_listener::odomCB,this);
 }
 void tf_listener::odomCB(const nav_msgs::OdometryConstPtr msg)
 {
     try{
-        listener.lookupTransform("world","map",ros::Time(0),map2world);
+        listener.lookupTransform("world","odom",ros::Time(0),odom2world);
     }
     catch(tf::TransformException ex){
         ROS_ERROR("WXF3:%s",ex.what());
     }
-    tf::Transform odom2pose,base2world_tf;
-    odom2pose.setOrigin(tf::Vector3(msg->pose.pose.position.x,msg->pose.pose.position.y,msg->pose.pose.position.z));
-    odom2pose.setRotation(tf::Quaternion(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w));
-    base2world_tf.mult(map2world,odom2pose);
+    tf::Transform base2odom,base2world_tf;
+    base2odom.setOrigin(tf::Vector3(msg->pose.pose.position.x,msg->pose.pose.position.y,msg->pose.pose.position.z));
+    base2odom.setRotation(tf::Quaternion(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w));
+       //TEST
+    double _yew_test,_pich_test,_roll_test;
+    base2odom.getBasis().getEulerZYX(_yew_test,_pich_test,_roll_test);
+
+    ROS_INFO("base2odom is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
+             base2odom.getOrigin().getX(),base2odom.getOrigin().getY(),base2odom.getOrigin().getZ(),
+             _yew_test*180/3.1415926,_pich_test*180/3.1415926,_roll_test*180/3.1415926);
+    double _yew_test1,_pich_test1,_roll_test1;
+    odom2world.getBasis().getEulerZYX(_yew_test1,_pich_test1,_roll_test1);
+
+    ROS_INFO("odom2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
+             odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),odom2world.getOrigin().getZ(),
+             _yew_test1*180/3.1415926,_pich_test1*180/3.1415926,_roll_test1*180/3.1415926);
+
+    base2world_tf.mult(odom2world,base2odom);
     nav_msgs::Odometry base2world_odom;
-    base2world_odom.header.frame_id="world";
+    base2world_odom.header.frame_id="world2";
     base2world_odom.header.stamp=ros::Time::now();
     base2world_odom.child_frame_id="base_link";
     base2world_odom.pose.pose.position.x=base2world_tf.getOrigin().getX();
@@ -52,7 +67,7 @@ void tf_listener::odomCB(const nav_msgs::OdometryConstPtr msg)
              base2world_tf.getOrigin().getX(),base2world_tf.getOrigin().getY(),base2world_tf.getOrigin().getZ(),
              _yew_test2*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);
     odom_pub.publish(base2world_odom);
-    tf_pub.sendTransform(tf::StampedTransform(base2world_tf,ros::Time::now(),"world1","base_link1"));
+    tf_pub.sendTransform(tf::StampedTransform(base2world_tf,ros::Time::now(),"world2","base_link1"));
 
 }
 int main(int argc,char** argv)

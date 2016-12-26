@@ -8,10 +8,13 @@
 #include <actionlib/client/simple_action_client.h>
 #include <visualization_msgs/Marker.h>
 #include <cmath>
-
+#include<std_msgs/String.h>
+#include<string>
+#include<sstream>
 ros::Publisher cmdVelPub;
 ros::Publisher marker_pub;
-
+ros::Subscriber id_sub;
+int id;
 void shutdown(int sig)
 {
   cmdVelPub.publish(geometry_msgs::Twist());
@@ -38,11 +41,20 @@ void init_markers(visualization_msgs::Marker *marker)
   marker->header.stamp = ros::Time::now();
 
 }
+//add for receieve tagID
+void idCB(const std_msgs::StringConstPtr msg)
+{
+    char*  id_str;
+    id_str=(char *)(msg->data.data());
+    id=atoi(id_str);
+}
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "nav_control");
   std::string topic = "/cmd_vel";
   ros::NodeHandle node;
+  //get tagID
+  //id_sub=node.subscribe("tag_id",1,idCB);
   //Subscribe to the move_base action server
   actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac("move_base",true);
 
@@ -56,13 +68,13 @@ int main(int argc, char** argv)
   ROS_INFO("move_base_square.cpp start...");
 
   //How big is the square we want the robot to navigate?
-  double square_size = 1.2;
+  double square_size = 0.6;
 
   //Create a list to hold the target quaternions (orientations)
   geometry_msgs::Quaternion quaternions[4];
 
   //convert the angles to quaternions
-  double angle = M_PI/2;
+  double angle = -M_PI/2;
   int angle_count = 0;
   for(angle_count = 0; angle_count < 4;angle_count++ )
   {
@@ -73,61 +85,66 @@ int main(int argc, char** argv)
   //a pose consisting of a position and orientation in the map frame.
   geometry_msgs::Point point;
   geometry_msgs::Pose pose_list[9];
+  int id2num[9]={0,4,8,9,10,6,2,1,0};
   //first point
   point.x = 0.0;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[0].position = point;
-  pose_list[0].orientation = quaternions[3];
+  pose_list[0].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
 //second point
   point.x=square_size;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[1].position = point;
-  pose_list[1].orientation =quaternions[3];
+  pose_list[1].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
 //third point
   point.x = square_size*2;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[2].position = point;
-  pose_list[2].orientation = quaternions[0];
+  pose_list[2].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
 //forth point
   point.x=square_size*2;
-  point.y=square_size;
+  point.y=-square_size;
   point.z = 0.0;
   pose_list[3].position = point;
-  pose_list[3].orientation = quaternions[0];
+  pose_list[3].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
+
 //fifth point
 
   point.x=square_size*2;
-  point.y=square_size*2;
+  point.y=-square_size*2;
   point.z = 0.0;
   pose_list[4].position = point;
-  pose_list[4].orientation = quaternions[1];
+  pose_list[4].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
+
 //sixth point
   point.x=square_size;
-  point.y=square_size*2;
+  point.y=-square_size*2;
   point.z = 0.0;
   pose_list[5].position = point;
-  pose_list[5].orientation = quaternions[1];
+  pose_list[5].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
+
 //seventh point
   point.x=0.0;
-  point.y=square_size*2;
+  point.y=-square_size*2;
   point.z = 0.0;
   pose_list[6].position = point;
-  pose_list[6].orientation = quaternions[2];
+  pose_list[6].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
+
 //eighth point
   point.x=0.0;
-  point.y=square_size;
+  point.y=-square_size;
   point.z = 0.0;
   pose_list[7].position = point;
-  pose_list[7].orientation = quaternions[2];
+  pose_list[7].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
 // last point
   point.x=0.0;
   point.y=0.0;
   point.z = 0.0;
   pose_list[8].position = point;
-  pose_list[8].orientation = quaternions[3];
+  pose_list[8].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*2);
 
   //Initialize the visualization markers for RViz
   init_markers(&line_list);
@@ -165,7 +182,7 @@ marker_pub.publish(line_list);
      move_base_msgs::MoveBaseGoal goal;
 
      //Use the map frame to define goal poses
-     goal.target_pose.header.frame_id = "map";
+     goal.target_pose.header.frame_id = "world2";
 
      //Set the time stamp to "now"
      goal.target_pose.header.stamp = ros::Time::now();
@@ -191,7 +208,7 @@ marker_pub.publish(line_list);
         //We made it!
         if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
         {
-            ROS_INFO("Goal succeeded!");
+                ROS_INFO("Goal succeeded!");
         }
         else
         {
