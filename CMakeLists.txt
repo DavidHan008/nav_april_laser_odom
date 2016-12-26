@@ -110,6 +110,8 @@ target_link_libraries(fake_topic_pub ${catkin_LIBRARIES})
 add_executable(serial_by_keyboard src/serial_by_keyboard.cpp)
 target_link_libraries(serial_by_keyboard ${catkin_LIBRARIES})
 
+add_executable(movesquare src/movesquare.cpp)
+target_link_libraries(movesquare ${catkin_LIBRARIES})
 
 #############
 ## Install ##image_pub
