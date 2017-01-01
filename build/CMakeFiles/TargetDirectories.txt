@@ -14,6 +14,7 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/bond_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/bond_generate_messages_py.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/clean_test_results.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/command.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/download_extra_data.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/doxygen.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/fake_topic_pub.dir
@@ -27,6 +28,7 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/move_base_msgs_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/move_base_msgs_generate_messages_py.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/movesquare.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/myplan.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_april_laser_odom_gencpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_april_laser_odom_generate_messages.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_april_laser_odom_generate_messages_cpp.dir

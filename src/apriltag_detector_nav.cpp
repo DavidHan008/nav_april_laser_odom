@@ -53,8 +53,13 @@ AprilTagDetector::AprilTagDetector(ros::NodeHandle& nh, ros::NodeHandle& pnh): i
   tag2world.setIdentity();;
   tag2world.setBasis(m0);
   //convert camera to base
-  camera2base.setIdentity();
-  camera2base.setOrigin(tf::Vector3(deltax,0,0));
+  tf::Matrix3x3 m2;
+  m2.setValue(0,-1,0,
+                        -1,0,0,
+                        0,0,-1);
+  base2camera.setIdentity();
+  base2camera.setBasis(m2);
+  base2camera.setOrigin(tf::Vector3(0.005,0.005,0));
   //*************************************************
   AprilTags::TagCodes tag_codes = AprilTags::tagCodes36h11;
   tag_detector_= boost::shared_ptr<AprilTags::TagDetector>(new AprilTags::TagDetector(tag_codes));
@@ -135,15 +140,15 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
     tag2camera_tf.setOrigin(origin);
    //camera2tag_tf:camera pose according to tag
     camera2tag_tf=tag2camera_tf.inverse();
-    camera2tag_tf.setOrigin(tf::Vector3(camera2tag_tf.getOrigin().getX(),camera2tag_tf.getOrigin().getY(),0));
+    camera2tag_tf.setOrigin(tf::Vector3(camera2tag_tf.getOrigin().getX(),camera2tag_tf.getOrigin().getY(),camera2tag_tf.getOrigin().getZ()));
     //thid:get the pose of camera inthe world frame
     camera2world_tf.mult(tag2world,camera2tag_tf);
     double _yew_camera,_pich_camera,_roll_camera;
     double _yew_tag,_pich_tag,_roll_tag;
     double _yew_world,_pich_world,_roll_world;
     camera2world_tf.getBasis().getEulerZYX(_yew_world,_pich_world,_roll_world);
-    _yew_world=_yew_world+M_PI/2;
-    _pich_world=0;_roll_world=0;
+    //_yew_world=_yew_world+M_PI/2;
+    //_pich_world=0;_roll_world=0;
     if(_yew_world>M_PI)
     {
         _yew_world-=2*M_PI;
@@ -158,54 +163,36 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
     //print for debug
     camera2tag_tf.getBasis().getEulerZYX(_yew_camera,_pich_camera,_roll_camera);
     tag2camera_tf.getBasis().getEulerZYX(_yew_tag,_pich_tag,_roll_tag);
-    //ROS_INFO("tag2camera_tf is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-             //tag2camera_tf.getOrigin().getX(),tag2camera_tf.getOrigin().getY(),tag2camera_tf.getOrigin().getZ(),_yew_tag*180/3.1415926,_pich_tag*180/3.1415926,_roll_tag*180/3.1415926);
-    //ROS_INFO("camera2tag_tf is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-    //camera2tag_tf.getOrigin().getX(),camera2tag_tf.getOrigin().getY(),camera2tag_tf.getOrigin().getZ(),_yew_camera*180/3.1415926,_pich_camera*180/3.1415926,_roll_camera*180/3.1415926);
+
     ROS_INFO("camrea2world_tf is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              camera2world_tf.getOrigin().getX(),camera2world_tf.getOrigin().getY(),camera2world_tf.getOrigin().getZ(),_yew_world*180/3.1415926,_pich_world*180/3.1415926,_roll_world*180/3.1415926);
-    //forth:publish the tf of robot according to world
+
+//forth:publish the tf of robot according to world
     //tf::StampedTransform base2world(camera2world_tf,ros::Time::now(),"world","base_link");
     //tf_pub_.sendTransform(base2world);
     //get the map pose in the world frame
     //tf::StampedTransform base2odom,odom2map;
-    /*
-    std_msgs::String tagidd;
-    tagidd.data=id_str;
-    id_pub.publish(tagidd);
-    */
+
     bool look_tf_mark=lookfor_tf();
+    //test
+    //look_tf_mark=true;
     if(look_tf_mark)
-    {
-        //ROS_INFO_STREAM("I have get the correct tf");
-        //tf::Transform temp;
-        //temp.mult(camera2world_tf,base2odom.inverse());
-        //double _yew_test1,_pich_test1,_roll_test1;
-        //odom2map.getBasis().getEulerZYX(_yew_test1,_pich_test1,_roll_test1);
-        //ROS_INFO("odom2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-                 //odom2map.getOrigin().getX(),odom2map.getOrigin().getY(),odom2map.getOrigin().getZ(),
-                 //_yew_test1*180/3.1415926,_pich_test1*180/3.1415926,_roll_test1*180/3.1415926);
+    {      
         double _yew_test3,_pich_test3,_roll_test3;
         base2odom.getBasis().getEulerZYX(_yew_test3,_pich_test3,_roll_test3);
+        /*
         ROS_INFO("base2odom111 is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  base2odom.getOrigin().getX(),base2odom.getOrigin().getY(),base2odom.getOrigin().getZ(),
                  _yew_test3*180/3.1415926,_pich_test3*180/3.1415926,_roll_test3*180/3.1415926);
-        //temp.mult(odom2map,base2odom);
-        //double _yew_test,_pich_test,_roll_test;
-        //temp.getBasis().getEulerZYX(_yew_test,_pich_test,_roll_test);
-
-        //ROS_INFO("base2map is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
-                 //temp.getOrigin().getX(),temp.getOrigin().getY(),temp.getOrigin().getZ(),
-                 //_yew_test*180/3.1415926,_pich_test*180/3.1415926,_roll_test*180/3.1415926);
-
+*/
         //map2world.mult(camera2world_tf,temp.inverse());
-        camera2base.setIdentity();
-        camera2base.setOrigin(tf::Vector3(deltax,0,0));
-        base2world.mult(camera2world_tf,camera2base.inverse());
-
+        //camera2base.setIdentity();
+        //camera2base.setOrigin(tf::Vector3(0.05,0,0));
+        base2world.mult(camera2world_tf,base2camera);
+        //base2world=camera2world_tf;
         double _yew_test4,_pich_test4,_roll_test4;
         base2world.getBasis().getEulerZYX(_yew_test4,_pich_test4,_roll_test4);
-        ROS_INFO("camera2base is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
+        ROS_INFO("base2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  base2world.getOrigin().getX(),base2world.getOrigin().getY(),base2world.getOrigin().getZ(),
                  _yew_test4*180/3.1415926,_pich_test4*180/3.1415926,_roll_test4*180/3.1415926);
 
@@ -213,10 +200,15 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
         double _yew_test2,_pich_test2,_roll_test2;
         //map2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
         odom2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
+        _pich_test2=0;_roll_test2=0;
+        tf::Quaternion qq=tf::createQuaternionFromYaw(_yew_test2);
+        odom2world.setRotation(qq);
+        odom2world.setOrigin(tf::Vector3(odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),0));
+/*
         ROS_INFO("odom2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),odom2world.getOrigin().getZ(),
                  _yew_test2*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);
-
+*/
         //tf_pub_.sendTransform(tf::StampedTransform(map2world,ros::Time::now(),"world","map"));
         tf_pub_.sendTransform(tf::StampedTransform(odom2world,ros::Time::now(),"world","odom"));
     }

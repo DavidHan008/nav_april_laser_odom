@@ -358,6 +358,19 @@ clean_test_results/fast:
 .PHONY : clean_test_results/fast
 
 #=============================================================================
+# Target rules for targets named command
+
+# Build rule for target.
+command: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 command
+.PHONY : command
+
+# fast build rule for target.
+command/fast:
+	$(MAKE) -f CMakeFiles/command.dir/build.make CMakeFiles/command.dir/build
+.PHONY : command/fast
+
+#=============================================================================
 # Target rules for targets named download_extra_data
 
 # Build rule for target.
@@ -499,6 +512,19 @@ movesquare: cmake_check_build_system
 movesquare/fast:
 	$(MAKE) -f CMakeFiles/movesquare.dir/build.make CMakeFiles/movesquare.dir/build
 .PHONY : movesquare/fast
+
+#=============================================================================
+# Target rules for targets named myplan
+
+# Build rule for target.
+myplan: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 myplan
+.PHONY : myplan
+
+# fast build rule for target.
+myplan/fast:
+	$(MAKE) -f CMakeFiles/myplan.dir/build.make CMakeFiles/myplan.dir/build
+.PHONY : myplan/fast
 
 #=============================================================================
 # Target rules for targets named nav_april_laser_odom_gencpp
@@ -1079,6 +1105,30 @@ src/apriltag_detector_nav_nodelet.cpp.s:
 	$(MAKE) -f CMakeFiles/apriltag_detector_nav_nodelet.dir/build.make CMakeFiles/apriltag_detector_nav_nodelet.dir/src/apriltag_detector_nav_nodelet.cpp.s
 .PHONY : src/apriltag_detector_nav_nodelet.cpp.s
 
+src/command.o: src/command.cpp.o
+.PHONY : src/command.o
+
+# target to build an object file
+src/command.cpp.o:
+	$(MAKE) -f CMakeFiles/command.dir/build.make CMakeFiles/command.dir/src/command.cpp.o
+.PHONY : src/command.cpp.o
+
+src/command.i: src/command.cpp.i
+.PHONY : src/command.i
+
+# target to preprocess a source file
+src/command.cpp.i:
+	$(MAKE) -f CMakeFiles/command.dir/build.make CMakeFiles/command.dir/src/command.cpp.i
+.PHONY : src/command.cpp.i
+
+src/command.s: src/command.cpp.s
+.PHONY : src/command.s
+
+# target to generate assembly for a file
+src/command.cpp.s:
+	$(MAKE) -f CMakeFiles/command.dir/build.make CMakeFiles/command.dir/src/command.cpp.s
+.PHONY : src/command.cpp.s
+
 src/fake_topic_pub.o: src/fake_topic_pub.cpp.o
 .PHONY : src/fake_topic_pub.o
 
@@ -1150,6 +1200,30 @@ src/movesquare.s: src/movesquare.cpp.s
 src/movesquare.cpp.s:
 	$(MAKE) -f CMakeFiles/movesquare.dir/build.make CMakeFiles/movesquare.dir/src/movesquare.cpp.s
 .PHONY : src/movesquare.cpp.s
+
+src/myplan.o: src/myplan.cpp.o
+.PHONY : src/myplan.o
+
+# target to build an object file
+src/myplan.cpp.o:
+	$(MAKE) -f CMakeFiles/myplan.dir/build.make CMakeFiles/myplan.dir/src/myplan.cpp.o
+.PHONY : src/myplan.cpp.o
+
+src/myplan.i: src/myplan.cpp.i
+.PHONY : src/myplan.i
+
+# target to preprocess a source file
+src/myplan.cpp.i:
+	$(MAKE) -f CMakeFiles/myplan.dir/build.make CMakeFiles/myplan.dir/src/myplan.cpp.i
+.PHONY : src/myplan.cpp.i
+
+src/myplan.s: src/myplan.cpp.s
+.PHONY : src/myplan.s
+
+# target to generate assembly for a file
+src/myplan.cpp.s:
+	$(MAKE) -f CMakeFiles/myplan.dir/build.make CMakeFiles/myplan.dir/src/myplan.cpp.s
+.PHONY : src/myplan.cpp.s
 
 src/nav_control.o: src/nav_control.cpp.o
 .PHONY : src/nav_control.o
@@ -1269,6 +1343,7 @@ help:
 	@echo "... bond_generate_messages_lisp"
 	@echo "... bond_generate_messages_py"
 	@echo "... clean_test_results"
+	@echo "... command"
 	@echo "... download_extra_data"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -1285,6 +1360,7 @@ help:
 	@echo "... move_base_msgs_generate_messages_lisp"
 	@echo "... move_base_msgs_generate_messages_py"
 	@echo "... movesquare"
+	@echo "... myplan"
 	@echo "... nav_april_laser_odom_gencpp"
 	@echo "... nav_april_laser_odom_generate_messages"
 	@echo "... nav_april_laser_odom_generate_messages_cpp"
@@ -1335,6 +1411,9 @@ help:
 	@echo "... src/apriltag_detector_nav_nodelet.o"
 	@echo "... src/apriltag_detector_nav_nodelet.i"
 	@echo "... src/apriltag_detector_nav_nodelet.s"
+	@echo "... src/command.o"
+	@echo "... src/command.i"
+	@echo "... src/command.s"
 	@echo "... src/fake_topic_pub.o"
 	@echo "... src/fake_topic_pub.i"
 	@echo "... src/fake_topic_pub.s"
@@ -1344,6 +1423,9 @@ help:
 	@echo "... src/movesquare.o"
 	@echo "... src/movesquare.i"
 	@echo "... src/movesquare.s"
+	@echo "... src/myplan.o"
+	@echo "... src/myplan.i"
+	@echo "... src/myplan.s"
 	@echo "... src/nav_control.o"
 	@echo "... src/nav_control.i"
 	@echo "... src/nav_control.s"

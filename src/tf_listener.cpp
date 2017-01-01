@@ -37,22 +37,30 @@ void tf_listener::odomCB(const nav_msgs::OdometryConstPtr msg)
        //TEST
     double _yew_test,_pich_test,_roll_test;
     base2odom.getBasis().getEulerZYX(_yew_test,_pich_test,_roll_test);
-
+/*
     ROS_INFO("base2odom is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              base2odom.getOrigin().getX(),base2odom.getOrigin().getY(),base2odom.getOrigin().getZ(),
              _yew_test*180/3.1415926,_pich_test*180/3.1415926,_roll_test*180/3.1415926);
+*/
     double _yew_test1,_pich_test1,_roll_test1;
     odom2world.getBasis().getEulerZYX(_yew_test1,_pich_test1,_roll_test1);
-
+    /*
     ROS_INFO("odom2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),odom2world.getOrigin().getZ(),
              _yew_test1*180/3.1415926,_pich_test1*180/3.1415926,_roll_test1*180/3.1415926);
-
+	*/
     base2world_tf.mult(odom2world,base2odom);
+
+    double _yew_test2,_pich_test2,_roll_test2;
+    base2world_tf.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
+    tf::Quaternion qq=tf::createQuaternionFromYaw(_yew_test2+0.0175);
+   //tf::Quaternion qq=tf::createQuaternionFromYaw(_yew_test2);
+    base2world_tf.setRotation(qq);
+
     nav_msgs::Odometry base2world_odom;
     base2world_odom.header.frame_id="world2";
     base2world_odom.header.stamp=ros::Time::now();
-    base2world_odom.child_frame_id="base_link";
+    base2world_odom.child_frame_id="base_link1";
     base2world_odom.pose.pose.position.x=base2world_tf.getOrigin().getX();
     base2world_odom.pose.pose.position.y=base2world_tf.getOrigin().getY();
     base2world_odom.pose.pose.position.z=base2world_tf.getOrigin().getZ();
@@ -60,12 +68,10 @@ void tf_listener::odomCB(const nav_msgs::OdometryConstPtr msg)
     base2world_odom.pose.pose.orientation.x=base2world_tf.getRotation().getX();
     base2world_odom.pose.pose.orientation.y=base2world_tf.getRotation().getY();
     base2world_odom.pose.pose.orientation.z=base2world_tf.getRotation().getZ();
-    double _yew_test2,_pich_test2,_roll_test2;
-    base2world_tf.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
-
+  
     ROS_INFO("result is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              base2world_tf.getOrigin().getX(),base2world_tf.getOrigin().getY(),base2world_tf.getOrigin().getZ(),
-             _yew_test2*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);
+             (_yew_test2+0.0175)*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);    
     odom_pub.publish(base2world_odom);
     tf_pub.sendTransform(tf::StampedTransform(base2world_tf,ros::Time::now(),"world2","base_link1"));
 

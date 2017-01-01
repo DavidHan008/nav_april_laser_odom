@@ -1,10 +1,16 @@
+<!--
+Provides a reasonable set of parameters for running Karto on a robot
+Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
+-->
+
 <launch>
   <include file="/home/nrsl_nuc/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
   <node pkg="nav_april_laser_odom" type="image_pub_nav" name="image_pub_nav"/>
-  <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector" output="screen">
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node"/>
+  <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector">
     <rosparam param="tag_descriptions">[
       {id: 0, size: 0.034, x: 0.0, y: -0.0, z: 0.0},
-      {id: 1, size: 0.172, x: 0.0, y: -0.6, z: 0.0},
+      {id: 1, size: 0.034, x: 0.0, y: -0.6, z: 0.0},
       {id: 2, size: 0.034, x: 0.0, y: -1.2, z: 0.0},
       {id: 3, size: 0.034, x: 0.0, y: -1.8, z: 0.0},
 
@@ -61,7 +67,21 @@
       {id: 46, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 47, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 48, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
-      {id: 49, size: 0.034, x: 1.0, y: 2.0, z: 0.0}]
+      {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
     </rosparam>
   </node>
+  <node pkg="nav_april_laser_odom" type="tf_listener" name="tf_listener" output="screen"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
+  <include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" />
+  <node pkg="nav_april_laser_odom" type="serial_nav" name="serial_nav"/>
+  <!--node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /-->
+  <!--node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
+    <remap from="scan" to="scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="2"/>
+    <param name="resolution" value="0.025"/>
+  </node-->
+  <node pkg="tf" type="static_transform_publisher" name="link_to_laser" args="0 0 0 0 0 0 1 /base_link1 /laser 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /world2 /map 100" />
+  <node pkg="nav_april_laser_odom" type="movesquare" name="movesquare" output="screen"/>
 </launch>

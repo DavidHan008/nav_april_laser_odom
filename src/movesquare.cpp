@@ -15,8 +15,9 @@ ros::Publisher cmdVelPub;
 ros::Publisher marker_pub;
 ros::Subscriber id_sub;
 int id;
+bool myflag=false;
 //tag是相对于世界坐标系的存在，由于tag和相机位置可以直接得到，而相机和base还存在一个offset，所以这边要加入一个修正量
-double deltaxy=0.05;
+double deltaxy=0.0;
 void shutdown(int sig)
 {
   cmdVelPub.publish(geometry_msgs::Twist());
@@ -39,7 +40,7 @@ void init_markers(visualization_msgs::Marker *marker)
   marker->color.b  = 1.0;
   marker->color.a  = 1.0;
 
-  marker->header.frame_id = "odom";
+  marker->header.frame_id = "world2";
   marker->header.stamp = ros::Time::now();
 
 }
@@ -87,80 +88,78 @@ int main(int argc, char** argv)
   //a pose consisting of a position and orientation in the map frame.
   geometry_msgs::Point point;
   geometry_msgs::Pose pose_list[5];
+  geometry_msgs::Pose pose_listNew[9];
+  //int nn=sizeof(pose_list)/sizeof(pose_list[0]);
+  //int mm=sizeof(pose_listNew)/sizeof(pose_listNew[0]);
   //int id2num[9]={0,4,8,9,10,6,2,1,0};
   //first point
-  point.x = 0.0-deltaxy;
+  point.x = -0.00;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[0].position = point;
   pose_list[0].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
+  //first new point
+  pose_listNew[0].position = point;
+  pose_listNew[0].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
+
 //second point
-  /*
-  point.x=square_size-deltaxy;
+  point.x = square_size*2-0.01;
   point.y = 0.0;
   point.z = 0.0;
   pose_list[1].position = point;
-  pose_list[1].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
-  */
-//third point
-  point.x = square_size*2;
-  point.y = 0.0+deltaxy;
-  point.z = 0.0;
-  pose_list[1].position = point;
   pose_list[1].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
-//forth point
-  /*
+  //second1 new point
+  pose_listNew[1].position = point;
+  pose_listNew[1].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,0);
+  //second2 new point
+  pose_listNew[2].position = point;
+  pose_listNew[2].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
+//third point
   point.x=square_size*2;
-  point.y=-square_size+deltaxy;
-  point.z = 0.0;
-  pose_list[3].position = point;
-  pose_list[3].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
-*/
-//fifth point
-
-  point.x=square_size*2+deltaxy;
   point.y=-square_size*2;
   point.z = 0.0;
   pose_list[2].position = point;
   pose_list[2].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
-
-//sixth point
-  /*
-  point.x=square_size+deltaxy;
-  point.y=-square_size*2;
-  point.z = 0.0;
-  pose_list[5].position = point;
-  pose_list[5].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
-*/
-//seventh point
+//third1 new point
+  pose_listNew[3].position = point;
+  pose_listNew[3].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI/2);
+//third2 new point
+  pose_listNew[4].position = point;
+  pose_listNew[4].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
+//forth point
   point.x=0.0;
-  point.y=-square_size*2-deltaxy;
+  point.y=-square_size*2;
   point.z = 0.0;
   pose_list[3].position = point;
   pose_list[3].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
-
-//eighth point
-  /*
+  //forth1 new point
+  pose_listNew[5].position = point;
+  pose_listNew[5].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI);
+  //forth2 new point
+  pose_listNew[6].position=point;
+  pose_listNew[6].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
+//fifth point
   point.x=0.0;
-  point.y=-square_size-deltaxy;
-  point.z = 0.0;
-  pose_list[7].position = point;
-  pose_list[7].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
-  */
-// last point
-  point.x=0.0-deltaxy;
   point.y=0.0;
   point.z = 0.0;
   pose_list[4].position = point;
   pose_list[4].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*2);
-
+//fifth1 new point
+  pose_listNew[7].position = point;
+  pose_listNew[7].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*1.5);
+  //fifth2 new point
+  pose_listNew[8].position = point;
+  pose_listNew[8].orientation = tf::createQuaternionMsgFromRollPitchYaw(0,0,-M_PI*2);
   //Initialize the visualization markers for RViz
   init_markers(&line_list);
 
   //Set a visualization marker at each waypoint
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < 9; i++)
   {
-    line_list.points.push_back(pose_list[i].position);
+      //**************************************
+    //line_list.points.push_back(pose_list[i].position);
+      line_list.points.push_back(pose_listNew[i].position);
+    //******************************************
   }
 marker_pub.publish(line_list);
   //Publisher to manually control the robot (e.g. to stop it, queue_size=5)
@@ -179,9 +178,9 @@ marker_pub.publish(line_list);
   ROS_INFO("Starting navigation test");
 
   //Initialize a counter to track waypoints
-  int count = 0;
+  int count = 1;
   //Cycle through the four waypoints
-  while( (count < 5) && (ros::ok()) )
+  while( (count < 9) && (ros::ok()) )
   {
      //Update the marker display
      marker_pub.publish(line_list);
@@ -191,13 +190,16 @@ marker_pub.publish(line_list);
 
      //Use the map frame to define goal poses
      goal.target_pose.header.frame_id = "world2";
+     //goal.target_pose.header.frame_id = "odom";
 
      //Set the time stamp to "now"
      goal.target_pose.header.stamp = ros::Time::now();
 
      //Set the goal pose to the i-th waypoint
-     goal.target_pose.pose = pose_list[count];
-
+     //******************************************
+     //goal.target_pose.pose = pose_list[count];
+     goal.target_pose.pose = pose_listNew[count];
+    //********************************************
      //Start the robot moving toward the goal
      //Send the goal pose to the MoveBaseAction server
      ac.sendGoal(goal);
@@ -216,7 +218,17 @@ marker_pub.publish(line_list);
         //We made it!
         if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
         {
+
+            if(!myflag)
+            {
+                count=count-1;
+               myflag=true;
+            }
+            else
+            {
+                myflag=false;
                 ROS_INFO("Goal succeeded!");
+            }
         }
         else
         {

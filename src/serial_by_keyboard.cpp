@@ -16,7 +16,7 @@
 #include<geometry_msgs/PoseStamped.h>
 serial::Serial ser;
 const char *d=" ";
-float L=0.283;
+float L=0.2897;
 //在ros收到string消息，往串口写。
 void write_callback(const geometry_msgs::Twist::ConstPtr& msg)
 {

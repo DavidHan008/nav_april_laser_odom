@@ -94,6 +94,12 @@ target_link_libraries(image_pub_nav
   ${catkin_LIBRARIES}
 )
 
+
+add_executable(serial_navnew src/serial_navnew.cpp)
+
+target_link_libraries(serial_navnew
+  ${catkin_LIBRARIES}
+)
 #add_executable(apriltag_g2o_slam src/apriltag_g2o_slam.cpp)
 #target_link_libraries(apriltag_g2o_slam
 #  ${catkin_LIBRARIES} g2o_core g2o_types_slam2d g2o_solver_csparse g2o_stuff g2o_csparse_extension ${CSPARSE_LIBRARY}
@@ -112,6 +118,12 @@ target_link_libraries(serial_by_keyboard ${catkin_LIBRARIES})
 
 add_executable(movesquare src/movesquare.cpp)
 target_link_libraries(movesquare ${catkin_LIBRARIES})
+
+add_executable(myplan src/myplan.cpp)
+target_link_libraries(myplan ${catkin_LIBRARIES})
+
+add_executable(command src/command.cpp)
+target_link_libraries(command ${catkin_LIBRARIES})
 
 #############
 ## Install ##image_pub
