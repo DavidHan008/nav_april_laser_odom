@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/nav_april_laser_odom_generate_messages_lisp"
   "devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetectionArray.lisp"
   "devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetection.lisp"
+  "devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp"
   "devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp"
 )
 

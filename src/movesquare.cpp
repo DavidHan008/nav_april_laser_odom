@@ -219,19 +219,23 @@ marker_pub.publish(line_list);
         if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
         {
 
-            if(!myflag)
+            //if(!myflag)
             {
-                count=count-1;
-               myflag=true;
+                //count=count-1;
+               //myflag=true;
             }
-            else
+            //else
             {
-                myflag=false;
+                //myflag=false;
+		ros::Duration tt(1.0);
+                tt.sleep();
                 ROS_INFO("Goal succeeded!");
             }
         }
         else
         {
+	   // ros::Duration tt(1.0);
+            //tt.sleep();
             ROS_INFO("The base failed for some reason");
         }
     }

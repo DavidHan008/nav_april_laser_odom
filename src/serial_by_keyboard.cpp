@@ -107,13 +107,13 @@ int main (int argc, char** argv){
     {
         ros::spinOnce();
         int index=ser.available();
-         //ROS_INFO_STREAM(index);
+        //ROS_INFO_STREAM(index);
     //有效串口数据（string转float）
         if(index==24)
         {
             std::string s;
             s= ser.readline();
-            //ROS_INFO_STREAM(s);
+            ROS_INFO_STREAM(s);
             char * ss=(char*)s.data();
             p=strtok(ss,sep);
             Position[0]=atof(p);

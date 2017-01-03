@@ -1,0 +1,89 @@
+<!--
+Provides a reasonable set of parameters for running Karto on a robot
+Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
+-->
+
+<launch>
+  <node pkg="nav_april_laser_odom" type="serial_navnew" name="serial_navnew"/>
+  <include file="/home/nrsl_nuc/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
+  <node pkg="nav_april_laser_odom" type="image_pub_nav" name="image_pub_nav"/>
+  <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector">
+    <rosparam param="tag_descriptions">[
+      {id: 0, size: 0.034, x: 0.0, y: -0.0, z: 0.0},
+      {id: 1, size: 0.034, x: 0.0, y: -0.6, z: 0.0},
+      {id: 2, size: 0.034, x: 0.0, y: -1.2, z: 0.0},
+      {id: 3, size: 0.034, x: 0.0, y: -1.8, z: 0.0},
+
+      {id: 4, size: 0.034, x: 0.6, y: -0.0, z: 0.0},
+      {id: 5, size: 0.034, x: 0.6, y: -0.6, z: 0.0},
+      {id: 6, size: 0.034, x: 0.6, y: -1.2, z: 0.0},
+      {id: 7, size: 0.034, x: 0.6, y: -1.8, z: 0.0},
+
+      {id: 8, size: 0.034, x: 1.2, y: -0.0, z: 0.0},
+      {id: 9, size: 0.034, x: 1.2, y: -0.6, z: 0.0},
+      {id: 10, size: 0.034, x: 1.2, y: -1.2, z: 0.0},
+      {id: 11, size: 0.034, x: 1.2, y: -1.8, z: 0.0},
+
+      {id: 12, size: 0.034, x: 1.8, y: -0.0, z: 0.0},
+      {id: 13, size: 0.034, x: 1.8, y: -0.6, z: 0.0},
+      {id: 14, size: 0.034, x: 1.8, y: -1.2, z: 0.0},
+      {id: 15, size: 0.034, x: 1.8, y: -1.8, z: 0.0},
+
+      {id: 16, size: 0.034, x: 2.4, y: -0.0, z: 0.0},
+      {id: 17, size: 0.034, x: 2.4, y: -0.6, z: 0.0},
+      {id: 18, size: 0.034, x: 2.4, y: -1.2, z: 0.0},
+      {id: 19, size: 0.034, x: 2.4, y: -1.8, z: 0.0},
+
+      {id: 20, size: 0.034, x: 3.0, y: -0.0, z: 0.0},
+      {id: 21, size: 0.034, x: 3.0, y: -0.6, z: 0.0},
+      {id: 22, size: 0.034, x: 3.0, y: -1.2, z: 0.0},
+      {id: 23, size: 0.034, x: 3.0, y: -1.8, z: 0.0},
+
+      {id: 24, size: 0.034, x: 3.6, y: -0.0, z: 0.0},
+      {id: 25, size: 0.034, x: 3.6, y: -0.6, z: 0.0},
+      {id: 26, size: 0.034, x: 3.6, y: -1.2, z: 0.0},
+      {id: 27, size: 0.034, x: 3.6, y: -1.8, z: 0.0},
+
+      {id: 28, size: 0.034, x: 4.2, y: -0.0, z: 0.0},
+      {id: 29, size: 0.034, x: 4.2, y: -0.6, z: 0.0},
+      {id: 30, size: 0.034, x: 4.2, y: -1.2, z: 0.0},
+      {id: 31, size: 0.034, x: 4.2, y: -1.8, z: 0.0},
+
+      {id: 32, size: 0.034, x: 4.8, y: -0.6, z: 0.0},
+      {id: 33, size: 0.034, x: 4.8, y: -1.2, z: 0.0},
+      {id: 34, size: 0.034, x: 5.4, y: -0.6, z: 0.0},
+      {id: 35, size: 0.034, x: 5.4, y: -1.2, z: 0.0},
+
+      {id: 36, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 37, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 38, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 39, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 40, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 41, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 42, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 43, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 44, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 45, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 46, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 47, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 48, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
+    </rosparam>
+  </node>
+  <node pkg="nav_april_laser_odom" type="odom_correct" name="odom_correct" output="screen"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
+  <!--include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" /-->
+  
+  <!--node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /-->
+  <!--node pkg="slam_karto" type="slam_karto" name="slam_karto">
+    <remap from="scan" to="scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="2"/>
+    <param name="resolution" value="0.025"/>
+  </node-->
+  <node pkg="tf" type="static_transform_publisher" name="link_to_laser" args="0 0 0 0 0 0 1 /base_link /laser 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /odom /map 100" />
+  <!--node pkg="nav_april_laser_odom" type="movesquare" name="movesquare"/-->
+  <node pkg="nav_april_laser_odom" type="newplan" name="newplan" output="screen"/>
+  <!--node pkg="nav_april_laser_odom" type="newcommand" name="newcommand" output="screen"/-->
+</launch>

@@ -1,6 +1,7 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_AprilTagDetection.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_AprilTagDetectionArray.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_PoseStampedArray.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_command.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/actionlib_generate_messages_cpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/actionlib_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/actionlib_generate_messages_py.dir
@@ -28,6 +29,7 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/move_base_msgs_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/move_base_msgs_generate_messages_py.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/movesquare.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/movesquare1.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/myplan.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_april_laser_odom_gencpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_april_laser_odom_generate_messages.dir
@@ -40,6 +42,8 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_msgs_generate_messages_cpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_msgs_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nav_msgs_generate_messages_py.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/newcommand.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/newplan.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nodelet_generate_messages_cpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nodelet_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/nodelet_generate_messages_py.dir
@@ -55,6 +59,7 @@
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/sensor_msgs_generate_messages_py.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/serial_by_keyboard.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/serial_nav.dir
+/home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/serial_navnew.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/std_msgs_generate_messages_cpp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/std_msgs_generate_messages_lisp.dir
 /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles/std_msgs_generate_messages_py.dir

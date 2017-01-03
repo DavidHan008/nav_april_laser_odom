@@ -66,7 +66,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
       {id: 45, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 46, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
       {id: 47, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
-      {id: 48, size: 0.034, x: 0.0, y: 0.0, z: 0.0},
+      {id: 48, size: 0.034, x: 0.04, y: 0.0, z: 0.0},
       {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
     </rosparam>
   </node>

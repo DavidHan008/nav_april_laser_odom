@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/nav_april_laser_odom_generate_messages_cpp"
   "devel/include/nav_april_laser_odom/AprilTagDetectionArray.h"
   "devel/include/nav_april_laser_odom/AprilTagDetection.h"
+  "devel/include/nav_april_laser_odom/command.h"
   "devel/include/nav_april_laser_odom/PoseStampedArray.h"
 )
 

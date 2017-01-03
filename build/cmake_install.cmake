@@ -119,6 +119,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg"
     "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg"
     "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
+    "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

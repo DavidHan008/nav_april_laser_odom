@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "nav_april_laser_odom: 3 messages, 0 services")
+message(STATUS "nav_april_laser_odom: 4 messages, 0 services")
 
 set(MSG_I_FLAGS "-Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg;-Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg")
 
@@ -15,6 +15,11 @@ add_custom_target(nav_april_laser_odom_generate_messages ALL)
 
 
 
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:geometry_msgs/Quaternion:std_msgs/Header:geometry_msgs/Pose"
+)
+
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" "nav_april_laser_odom/AprilTagDetection:geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/Pose:geometry_msgs/PoseStamped:std_msgs/Header"
@@ -25,9 +30,9 @@ add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:geometry_msgs/Quaternion:std_msgs/Header:geometry_msgs/Pose"
 )
 
-get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:geometry_msgs/Quaternion:std_msgs/Header:geometry_msgs/Pose"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" "geometry_msgs/Pose2D"
 )
 
 #
@@ -46,6 +51,12 @@ _generate_msg_cpp(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_cpp(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose2D.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_cpp(nav_april_laser_odom
@@ -69,11 +80,13 @@ add_custom_target(nav_april_laser_odom_generate_messages_cpp
 add_dependencies(nav_april_laser_odom_generate_messages nav_april_laser_odom_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -98,6 +111,12 @@ _generate_msg_lisp(nav_april_laser_odom
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_lisp(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_lisp(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
@@ -118,11 +137,13 @@ add_custom_target(nav_april_laser_odom_generate_messages_lisp
 add_dependencies(nav_april_laser_odom_generate_messages nav_april_laser_odom_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -147,6 +168,12 @@ _generate_msg_py(nav_april_laser_odom
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_py(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_py(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
@@ -167,11 +194,13 @@ add_custom_target(nav_april_laser_odom_generate_messages_py
 add_dependencies(nav_april_laser_odom_generate_messages nav_april_laser_odom_generate_messages_py)
 
 # add dependencies to all check dependencies targets
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg" NAME_WE)
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

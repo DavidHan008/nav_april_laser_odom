@@ -26,6 +26,8 @@ add_message_files(
   AprilTagDetection.msg
   AprilTagDetectionArray.msg
   PoseStampedArray.msg
+  command.msg
+  newodom.msg
 )
 
 generate_messages(
@@ -125,6 +127,17 @@ target_link_libraries(myplan ${catkin_LIBRARIES})
 add_executable(command src/command.cpp)
 target_link_libraries(command ${catkin_LIBRARIES})
 
+add_executable(movesquare1 src/movesquare1.cpp)
+target_link_libraries(movesquare1 ${catkin_LIBRARIES})
+
+add_executable(newplan src/newplan.cpp)
+target_link_libraries(newplan ${catkin_LIBRARIES})
+
+add_executable(newcommand src/newcommand.cpp)
+target_link_libraries(newcommand ${catkin_LIBRARIES})
+
+add_executable(odom_correct src/odom_correct.cpp)
+target_link_libraries(odom_correct ${catkin_LIBRARIES})
 #############
 ## Install ##image_pub
 #############

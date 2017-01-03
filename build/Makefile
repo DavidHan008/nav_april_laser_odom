@@ -189,6 +189,19 @@ _nav_april_laser_odom_generate_messages_check_deps_PoseStampedArray/fast:
 .PHONY : _nav_april_laser_odom_generate_messages_check_deps_PoseStampedArray/fast
 
 #=============================================================================
+# Target rules for targets named _nav_april_laser_odom_generate_messages_check_deps_command
+
+# Build rule for target.
+_nav_april_laser_odom_generate_messages_check_deps_command: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _nav_april_laser_odom_generate_messages_check_deps_command
+.PHONY : _nav_april_laser_odom_generate_messages_check_deps_command
+
+# fast build rule for target.
+_nav_april_laser_odom_generate_messages_check_deps_command/fast:
+	$(MAKE) -f CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_command.dir/build.make CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_command.dir/build
+.PHONY : _nav_april_laser_odom_generate_messages_check_deps_command/fast
+
+#=============================================================================
 # Target rules for targets named actionlib_generate_messages_cpp
 
 # Build rule for target.
@@ -514,6 +527,19 @@ movesquare/fast:
 .PHONY : movesquare/fast
 
 #=============================================================================
+# Target rules for targets named movesquare1
+
+# Build rule for target.
+movesquare1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 movesquare1
+.PHONY : movesquare1
+
+# fast build rule for target.
+movesquare1/fast:
+	$(MAKE) -f CMakeFiles/movesquare1.dir/build.make CMakeFiles/movesquare1.dir/build
+.PHONY : movesquare1/fast
+
+#=============================================================================
 # Target rules for targets named myplan
 
 # Build rule for target.
@@ -668,6 +694,32 @@ nav_msgs_generate_messages_py: cmake_check_build_system
 nav_msgs_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/nav_msgs_generate_messages_py.dir/build.make CMakeFiles/nav_msgs_generate_messages_py.dir/build
 .PHONY : nav_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named newcommand
+
+# Build rule for target.
+newcommand: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 newcommand
+.PHONY : newcommand
+
+# fast build rule for target.
+newcommand/fast:
+	$(MAKE) -f CMakeFiles/newcommand.dir/build.make CMakeFiles/newcommand.dir/build
+.PHONY : newcommand/fast
+
+#=============================================================================
+# Target rules for targets named newplan
+
+# Build rule for target.
+newplan: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 newplan
+.PHONY : newplan
+
+# fast build rule for target.
+newplan/fast:
+	$(MAKE) -f CMakeFiles/newplan.dir/build.make CMakeFiles/newplan.dir/build
+.PHONY : newplan/fast
 
 #=============================================================================
 # Target rules for targets named nodelet_generate_messages_cpp
@@ -863,6 +915,19 @@ serial_nav: cmake_check_build_system
 serial_nav/fast:
 	$(MAKE) -f CMakeFiles/serial_nav.dir/build.make CMakeFiles/serial_nav.dir/build
 .PHONY : serial_nav/fast
+
+#=============================================================================
+# Target rules for targets named serial_navnew
+
+# Build rule for target.
+serial_navnew: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 serial_navnew
+.PHONY : serial_navnew
+
+# fast build rule for target.
+serial_navnew/fast:
+	$(MAKE) -f CMakeFiles/serial_navnew.dir/build.make CMakeFiles/serial_navnew.dir/build
+.PHONY : serial_navnew/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
@@ -1201,6 +1266,30 @@ src/movesquare.cpp.s:
 	$(MAKE) -f CMakeFiles/movesquare.dir/build.make CMakeFiles/movesquare.dir/src/movesquare.cpp.s
 .PHONY : src/movesquare.cpp.s
 
+src/movesquare1.o: src/movesquare1.cpp.o
+.PHONY : src/movesquare1.o
+
+# target to build an object file
+src/movesquare1.cpp.o:
+	$(MAKE) -f CMakeFiles/movesquare1.dir/build.make CMakeFiles/movesquare1.dir/src/movesquare1.cpp.o
+.PHONY : src/movesquare1.cpp.o
+
+src/movesquare1.i: src/movesquare1.cpp.i
+.PHONY : src/movesquare1.i
+
+# target to preprocess a source file
+src/movesquare1.cpp.i:
+	$(MAKE) -f CMakeFiles/movesquare1.dir/build.make CMakeFiles/movesquare1.dir/src/movesquare1.cpp.i
+.PHONY : src/movesquare1.cpp.i
+
+src/movesquare1.s: src/movesquare1.cpp.s
+.PHONY : src/movesquare1.s
+
+# target to generate assembly for a file
+src/movesquare1.cpp.s:
+	$(MAKE) -f CMakeFiles/movesquare1.dir/build.make CMakeFiles/movesquare1.dir/src/movesquare1.cpp.s
+.PHONY : src/movesquare1.cpp.s
+
 src/myplan.o: src/myplan.cpp.o
 .PHONY : src/myplan.o
 
@@ -1248,6 +1337,54 @@ src/nav_control.s: src/nav_control.cpp.s
 src/nav_control.cpp.s:
 	$(MAKE) -f CMakeFiles/nav_control.dir/build.make CMakeFiles/nav_control.dir/src/nav_control.cpp.s
 .PHONY : src/nav_control.cpp.s
+
+src/newcommand.o: src/newcommand.cpp.o
+.PHONY : src/newcommand.o
+
+# target to build an object file
+src/newcommand.cpp.o:
+	$(MAKE) -f CMakeFiles/newcommand.dir/build.make CMakeFiles/newcommand.dir/src/newcommand.cpp.o
+.PHONY : src/newcommand.cpp.o
+
+src/newcommand.i: src/newcommand.cpp.i
+.PHONY : src/newcommand.i
+
+# target to preprocess a source file
+src/newcommand.cpp.i:
+	$(MAKE) -f CMakeFiles/newcommand.dir/build.make CMakeFiles/newcommand.dir/src/newcommand.cpp.i
+.PHONY : src/newcommand.cpp.i
+
+src/newcommand.s: src/newcommand.cpp.s
+.PHONY : src/newcommand.s
+
+# target to generate assembly for a file
+src/newcommand.cpp.s:
+	$(MAKE) -f CMakeFiles/newcommand.dir/build.make CMakeFiles/newcommand.dir/src/newcommand.cpp.s
+.PHONY : src/newcommand.cpp.s
+
+src/newplan.o: src/newplan.cpp.o
+.PHONY : src/newplan.o
+
+# target to build an object file
+src/newplan.cpp.o:
+	$(MAKE) -f CMakeFiles/newplan.dir/build.make CMakeFiles/newplan.dir/src/newplan.cpp.o
+.PHONY : src/newplan.cpp.o
+
+src/newplan.i: src/newplan.cpp.i
+.PHONY : src/newplan.i
+
+# target to preprocess a source file
+src/newplan.cpp.i:
+	$(MAKE) -f CMakeFiles/newplan.dir/build.make CMakeFiles/newplan.dir/src/newplan.cpp.i
+.PHONY : src/newplan.cpp.i
+
+src/newplan.s: src/newplan.cpp.s
+.PHONY : src/newplan.s
+
+# target to generate assembly for a file
+src/newplan.cpp.s:
+	$(MAKE) -f CMakeFiles/newplan.dir/build.make CMakeFiles/newplan.dir/src/newplan.cpp.s
+.PHONY : src/newplan.cpp.s
 
 src/serial_by_keyboard.o: src/serial_by_keyboard.cpp.o
 .PHONY : src/serial_by_keyboard.o
@@ -1297,6 +1434,30 @@ src/serial_nav.cpp.s:
 	$(MAKE) -f CMakeFiles/serial_nav.dir/build.make CMakeFiles/serial_nav.dir/src/serial_nav.cpp.s
 .PHONY : src/serial_nav.cpp.s
 
+src/serial_navnew.o: src/serial_navnew.cpp.o
+.PHONY : src/serial_navnew.o
+
+# target to build an object file
+src/serial_navnew.cpp.o:
+	$(MAKE) -f CMakeFiles/serial_navnew.dir/build.make CMakeFiles/serial_navnew.dir/src/serial_navnew.cpp.o
+.PHONY : src/serial_navnew.cpp.o
+
+src/serial_navnew.i: src/serial_navnew.cpp.i
+.PHONY : src/serial_navnew.i
+
+# target to preprocess a source file
+src/serial_navnew.cpp.i:
+	$(MAKE) -f CMakeFiles/serial_navnew.dir/build.make CMakeFiles/serial_navnew.dir/src/serial_navnew.cpp.i
+.PHONY : src/serial_navnew.cpp.i
+
+src/serial_navnew.s: src/serial_navnew.cpp.s
+.PHONY : src/serial_navnew.s
+
+# target to generate assembly for a file
+src/serial_navnew.cpp.s:
+	$(MAKE) -f CMakeFiles/serial_navnew.dir/build.make CMakeFiles/serial_navnew.dir/src/serial_navnew.cpp.s
+.PHONY : src/serial_navnew.cpp.s
+
 src/tf_listener.o: src/tf_listener.cpp.o
 .PHONY : src/tf_listener.o
 
@@ -1330,6 +1491,7 @@ help:
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_AprilTagDetection"
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_AprilTagDetectionArray"
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_PoseStampedArray"
+	@echo "... _nav_april_laser_odom_generate_messages_check_deps_command"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_py"
@@ -1360,6 +1522,7 @@ help:
 	@echo "... move_base_msgs_generate_messages_lisp"
 	@echo "... move_base_msgs_generate_messages_py"
 	@echo "... movesquare"
+	@echo "... movesquare1"
 	@echo "... myplan"
 	@echo "... nav_april_laser_odom_gencpp"
 	@echo "... nav_april_laser_odom_generate_messages"
@@ -1372,6 +1535,8 @@ help:
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_py"
+	@echo "... newcommand"
+	@echo "... newplan"
 	@echo "... nodelet_generate_messages_cpp"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_py"
@@ -1388,6 +1553,7 @@ help:
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... serial_by_keyboard"
 	@echo "... serial_nav"
+	@echo "... serial_navnew"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
@@ -1423,18 +1589,30 @@ help:
 	@echo "... src/movesquare.o"
 	@echo "... src/movesquare.i"
 	@echo "... src/movesquare.s"
+	@echo "... src/movesquare1.o"
+	@echo "... src/movesquare1.i"
+	@echo "... src/movesquare1.s"
 	@echo "... src/myplan.o"
 	@echo "... src/myplan.i"
 	@echo "... src/myplan.s"
 	@echo "... src/nav_control.o"
 	@echo "... src/nav_control.i"
 	@echo "... src/nav_control.s"
+	@echo "... src/newcommand.o"
+	@echo "... src/newcommand.i"
+	@echo "... src/newcommand.s"
+	@echo "... src/newplan.o"
+	@echo "... src/newplan.i"
+	@echo "... src/newplan.s"
 	@echo "... src/serial_by_keyboard.o"
 	@echo "... src/serial_by_keyboard.i"
 	@echo "... src/serial_by_keyboard.s"
 	@echo "... src/serial_nav.o"
 	@echo "... src/serial_nav.i"
 	@echo "... src/serial_nav.s"
+	@echo "... src/serial_navnew.o"
+	@echo "... src/serial_navnew.i"
+	@echo "... src/serial_navnew.s"
 	@echo "... src/tf_listener.o"
 	@echo "... src/tf_listener.i"
 	@echo "... src/tf_listener.s"

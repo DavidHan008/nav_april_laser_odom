@@ -47,6 +47,7 @@ include CMakeFiles/nav_april_laser_odom_generate_messages_lisp.dir/progress.make
 
 CMakeFiles/nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetectionArray.lisp
 CMakeFiles/nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetection.lisp
+CMakeFiles/nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp
 CMakeFiles/nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp
 
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetectionArray.lisp: /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py
@@ -72,6 +73,13 @@ devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetection.lisp: /op
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from nav_april_laser_odom/AprilTagDetection.msg"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/share/common-lisp/ros/nav_april_laser_odom/msg
 
+devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp: /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py
+devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp: ../msg/command.msg
+devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose2D.msg
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from nav_april_laser_odom/command.msg"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/share/common-lisp/ros/nav_april_laser_odom/msg
+
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: ../msg/PoseStampedArray.msg
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg
@@ -79,13 +87,14 @@ devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg
 devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from nav_april_laser_odom/PoseStampedArray.msg"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/share/common-lisp/ros/nav_april_laser_odom/msg
 
 nav_april_laser_odom_generate_messages_lisp: CMakeFiles/nav_april_laser_odom_generate_messages_lisp
 nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetectionArray.lisp
 nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/AprilTagDetection.lisp
+nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/command.lisp
 nav_april_laser_odom_generate_messages_lisp: devel/share/common-lisp/ros/nav_april_laser_odom/msg/PoseStampedArray.lisp
 nav_april_laser_odom_generate_messages_lisp: CMakeFiles/nav_april_laser_odom_generate_messages_lisp.dir/build.make
 .PHONY : nav_april_laser_odom_generate_messages_lisp
