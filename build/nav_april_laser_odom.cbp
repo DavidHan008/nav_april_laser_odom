@@ -57,6 +57,16 @@
             <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="_nav_april_laser_odom_generate_messages_check_deps_newodom">
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 _nav_april_laser_odom_generate_messages_check_deps_newodom" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="actionlib_generate_messages_cpp">
          <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build" />
          <Option type="4" />
@@ -532,6 +542,72 @@
          <Option type="4" />
          <MakeCommands>
             <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 geometry_msgs_generate_messages_py" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="goalpub">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/goalpub" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 goalpub" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="goalpub/fast">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/goalpub" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 goalpub/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
@@ -1199,6 +1275,138 @@
             <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="obstcale_avoid">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/obstcale_avoid" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 obstcale_avoid" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="obstcale_avoid/fast">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/obstcale_avoid" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 obstcale_avoid/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="odom_correct">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/odom_correct" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 odom_correct" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="odom_correct/fast">
+         <Option output="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom/odom_correct" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/lib/nav_april_laser_odom" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;nav_april_laser_odom&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/wxf/catkin_ws/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/hitsz_apriltags_ros/apriltags_ros/ethz_apriltag2/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include" />
+            <Add directory="/home/wxf/catkin_ws/src/nav_april_laser_odom/include" />
+            <Add directory="/opt/ros/indigo/include" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/opencv" />
+            <Add directory="/usr/include/suitesparse" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 odom_correct/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/wxf/catkin_ws/src/nav_april_laser_odom/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="rebuild_cache">
          <Option working_dir="/home/wxf/catkin_ws/src/nav_april_laser_odom/build" />
          <Option type="4" />
@@ -1806,6 +2014,8 @@
       </Unit>
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/fake_topic_pub.cpp">
       </Unit>
+      <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/goalpub.cpp">
+      </Unit>
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/image_pub_nav.cpp">
       </Unit>
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/movesquare.cpp">
@@ -1819,6 +2029,10 @@
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/newcommand.cpp">
       </Unit>
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/newplan.cpp">
+      </Unit>
+      <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/obstcale_avoid.cpp">
+      </Unit>
+      <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/odom_correct.cpp">
       </Unit>
       <Unit filename="/home/wxf/catkin_ws/src/nav_april_laser_odom/src/serial_by_keyboard.cpp">
       </Unit>

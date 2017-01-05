@@ -3,6 +3,7 @@ FILE(REMOVE_RECURSE
   "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/_AprilTagDetectionArray.py"
   "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/_AprilTagDetection.py"
   "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/_command.py"
+  "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/_newodom.py"
   "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/_PoseStampedArray.py"
   "devel/lib/python2.7/dist-packages/nav_april_laser_odom/msg/__init__.py"
 )

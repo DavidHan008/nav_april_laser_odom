@@ -48,6 +48,7 @@ include CMakeFiles/nav_april_laser_odom_generate_messages_cpp.dir/progress.make
 CMakeFiles/nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/AprilTagDetectionArray.h
 CMakeFiles/nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/AprilTagDetection.h
 CMakeFiles/nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/command.h
+CMakeFiles/nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/newodom.h
 CMakeFiles/nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/PoseStampedArray.h
 
 devel/include/nav_april_laser_odom/AprilTagDetectionArray.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
@@ -83,6 +84,22 @@ devel/include/nav_april_laser_odom/command.h: /opt/ros/indigo/share/gencpp/cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from nav_april_laser_odom/command.msg"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include/nav_april_laser_odom -e /opt/ros/indigo/share/gencpp/cmake/..
 
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
+devel/include/nav_april_laser_odom/newodom.h: ../msg/newodom.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseWithCovariance.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/TwistWithCovariance.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Vector3.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Twist.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/nav_msgs/cmake/../msg/Odometry.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg
+devel/include/nav_april_laser_odom/newodom.h: /opt/ros/indigo/share/gencpp/cmake/../msg.h.template
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from nav_april_laser_odom/newodom.msg"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include/nav_april_laser_odom -e /opt/ros/indigo/share/gencpp/cmake/..
+
 devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
 devel/include/nav_april_laser_odom/PoseStampedArray.h: ../msg/PoseStampedArray.msg
 devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg
@@ -91,7 +108,7 @@ devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/geo
 devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg
 devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg
 devel/include/nav_april_laser_odom/PoseStampedArray.h: /opt/ros/indigo/share/gencpp/cmake/../msg.h.template
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/wxf/catkin_ws/src/nav_april_laser_odom/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from nav_april_laser_odom/PoseStampedArray.msg"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg -Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg -p nav_april_laser_odom -o /home/wxf/catkin_ws/src/nav_april_laser_odom/build/devel/include/nav_april_laser_odom -e /opt/ros/indigo/share/gencpp/cmake/..
 
@@ -99,6 +116,7 @@ nav_april_laser_odom_generate_messages_cpp: CMakeFiles/nav_april_laser_odom_gene
 nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/AprilTagDetectionArray.h
 nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/AprilTagDetection.h
 nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/command.h
+nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/newodom.h
 nav_april_laser_odom_generate_messages_cpp: devel/include/nav_april_laser_odom/PoseStampedArray.h
 nav_april_laser_odom_generate_messages_cpp: CMakeFiles/nav_april_laser_odom_generate_messages_cpp.dir/build.make
 .PHONY : nav_april_laser_odom_generate_messages_cpp

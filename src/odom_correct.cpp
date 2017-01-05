@@ -11,6 +11,7 @@ private:
     ros::NodeHandle nh;
     tf::TransformListener listener;
     ros::Publisher odom_pub;
+    ros::Publisher new_odom_pub;
     tf::TransformBroadcaster tf_pub;
     ros::Subscriber odom_sub;
     ros::Time t_last=ros::Time::now();
@@ -24,6 +25,7 @@ tf_listener::tf_listener()
     map2world.setIdentity();
     //odom_pub=nh.advertise<nav_msgs::Odometry>("odom",5);
     odom_pub=nh.advertise<nav_april_laser_odom::newodom>("odom",5);
+    new_odom_pub=nh.advertise<nav_msgs::Odometry>("newodom",5);
     //odom_sub=nh.subscribe("correctOdom",5,&tf_listener::odomCB,this);
     odom_sub=nh.subscribe("odomInit",5,&tf_listener::odomCB,this);
 }
@@ -72,7 +74,7 @@ void tf_listener::odomCB(const nav_msgs::OdometryConstPtr msg)
     base2world_odom.pose.pose.orientation.x=base2world_tf.getRotation().getX();
     base2world_odom.pose.pose.orientation.y=base2world_tf.getRotation().getY();
     base2world_odom.pose.pose.orientation.z=base2world_tf.getRotation().getZ();
-  
+    new_odom_pub.publish(base2world_odom);
     ROS_INFO("result is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              base2world_tf.getOrigin().getX(),base2world_tf.getOrigin().getY(),base2world_tf.getOrigin().getZ(),
              (_yew_test2+0.0175)*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);    
@@ -101,3 +103,4 @@ int main(int argc,char** argv)
     ros::spin();
     return 0;
 }
+

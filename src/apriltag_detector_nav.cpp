@@ -1,4 +1,4 @@
-﻿#include <apriltags_ros/apriltag_detector_nav.h>
+#include <apriltags_ros/apriltag_detector_nav.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <boost/foreach.hpp>
@@ -59,7 +59,7 @@ AprilTagDetector::AprilTagDetector(ros::NodeHandle& nh, ros::NodeHandle& pnh): i
                         0,0,-1);
   base2camera.setIdentity();
   base2camera.setBasis(m2);
-  base2camera.setOrigin(tf::Vector3(0.005,0.035,0));
+  base2camera.setOrigin(tf::Vector3(0.005,0.045,0));
   //*************************************************
   AprilTags::TagCodes tag_codes = AprilTags::tagCodes36h11;
   tag_detector_= boost::shared_ptr<AprilTags::TagDetector>(new AprilTags::TagDetector(tag_codes));
@@ -120,7 +120,7 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
     stream<<description.id();
     string id_str;
     stream>>id_str;
-    //  ROS_INFO("%lf",tag_size);
+      ROS_INFO("%d",description.id());
 
     //detection.draw(cv_ptr->image);
     Eigen::Matrix4d transform = detection.getRelativeTransform(tag_size, fx, fy, px, py);
@@ -163,10 +163,10 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
     //print for debug
     camera2tag_tf.getBasis().getEulerZYX(_yew_camera,_pich_camera,_roll_camera);
     tag2camera_tf.getBasis().getEulerZYX(_yew_tag,_pich_tag,_roll_tag);
-
+/*
     ROS_INFO("camrea2world_tf is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
              camera2world_tf.getOrigin().getX(),camera2world_tf.getOrigin().getY(),camera2world_tf.getOrigin().getZ(),_yew_world*180/3.1415926,_pich_world*180/3.1415926,_roll_world*180/3.1415926);
-
+*/
 //forth:publish the tf of robot according to world
     //tf::StampedTransform base2world(camera2world_tf,ros::Time::now(),"world","base_link");
     //tf_pub_.sendTransform(base2world);
@@ -192,10 +192,11 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
         //base2world=camera2world_tf;
         double _yew_test4,_pich_test4,_roll_test4;
         base2world.getBasis().getEulerZYX(_yew_test4,_pich_test4,_roll_test4);
+        /*
         ROS_INFO("base2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  base2world.getOrigin().getX(),base2world.getOrigin().getY(),base2world.getOrigin().getZ(),
                  _yew_test4*180/3.1415926,_pich_test4*180/3.1415926,_roll_test4*180/3.1415926);
-
+        */
         odom2world.mult(base2world,base2odom.inverse());
         double _yew_test2,_pich_test2,_roll_test2;
         //map2world.getBasis().getEulerZYX(_yew_test2,_pich_test2,_roll_test2);
@@ -204,11 +205,11 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg){
         tf::Quaternion qq=tf::createQuaternionFromYaw(_yew_test2);
         odom2world.setRotation(qq);
         odom2world.setOrigin(tf::Vector3(odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),0));
-
+/*
         ROS_INFO("odom2world is(x:%.3f, y:%.3f. z:%.3f,,,,,angle:%.3f,%.3f,%.3f) ",
                  odom2world.getOrigin().getX(),odom2world.getOrigin().getY(),odom2world.getOrigin().getZ(),
                  _yew_test2*180/3.1415926,_pich_test2*180/3.1415926,_roll_test2*180/3.1415926);
-
+*/
         //tf_pub_.sendTransform(tf::StampedTransform(map2world,ros::Time::now(),"world","map"));
         tf_pub_.sendTransform(tf::StampedTransform(odom2world,ros::Time::now(),"world","odom"));
     }
@@ -281,3 +282,4 @@ std::map<int, AprilTagDescription> AprilTagDetector::parse_tag_descriptions(XmlR
 
 
 }
+

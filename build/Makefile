@@ -202,6 +202,19 @@ _nav_april_laser_odom_generate_messages_check_deps_command/fast:
 .PHONY : _nav_april_laser_odom_generate_messages_check_deps_command/fast
 
 #=============================================================================
+# Target rules for targets named _nav_april_laser_odom_generate_messages_check_deps_newodom
+
+# Build rule for target.
+_nav_april_laser_odom_generate_messages_check_deps_newodom: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _nav_april_laser_odom_generate_messages_check_deps_newodom
+.PHONY : _nav_april_laser_odom_generate_messages_check_deps_newodom
+
+# fast build rule for target.
+_nav_april_laser_odom_generate_messages_check_deps_newodom/fast:
+	$(MAKE) -f CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_newodom.dir/build.make CMakeFiles/_nav_april_laser_odom_generate_messages_check_deps_newodom.dir/build
+.PHONY : _nav_april_laser_odom_generate_messages_check_deps_newodom/fast
+
+#=============================================================================
 # Target rules for targets named actionlib_generate_messages_cpp
 
 # Build rule for target.
@@ -460,6 +473,19 @@ geometry_msgs_generate_messages_py: cmake_check_build_system
 geometry_msgs_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make CMakeFiles/geometry_msgs_generate_messages_py.dir/build
 .PHONY : geometry_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named goalpub
+
+# Build rule for target.
+goalpub: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 goalpub
+.PHONY : goalpub
+
+# fast build rule for target.
+goalpub/fast:
+	$(MAKE) -f CMakeFiles/goalpub.dir/build.make CMakeFiles/goalpub.dir/build
+.PHONY : goalpub/fast
 
 #=============================================================================
 # Target rules for targets named image_pub_nav
@@ -759,6 +785,32 @@ nodelet_generate_messages_py: cmake_check_build_system
 nodelet_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/nodelet_generate_messages_py.dir/build.make CMakeFiles/nodelet_generate_messages_py.dir/build
 .PHONY : nodelet_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named obstcale_avoid
+
+# Build rule for target.
+obstcale_avoid: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 obstcale_avoid
+.PHONY : obstcale_avoid
+
+# fast build rule for target.
+obstcale_avoid/fast:
+	$(MAKE) -f CMakeFiles/obstcale_avoid.dir/build.make CMakeFiles/obstcale_avoid.dir/build
+.PHONY : obstcale_avoid/fast
+
+#=============================================================================
+# Target rules for targets named odom_correct
+
+# Build rule for target.
+odom_correct: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 odom_correct
+.PHONY : odom_correct
+
+# fast build rule for target.
+odom_correct/fast:
+	$(MAKE) -f CMakeFiles/odom_correct.dir/build.make CMakeFiles/odom_correct.dir/build
+.PHONY : odom_correct/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -1218,6 +1270,30 @@ src/fake_topic_pub.cpp.s:
 	$(MAKE) -f CMakeFiles/fake_topic_pub.dir/build.make CMakeFiles/fake_topic_pub.dir/src/fake_topic_pub.cpp.s
 .PHONY : src/fake_topic_pub.cpp.s
 
+src/goalpub.o: src/goalpub.cpp.o
+.PHONY : src/goalpub.o
+
+# target to build an object file
+src/goalpub.cpp.o:
+	$(MAKE) -f CMakeFiles/goalpub.dir/build.make CMakeFiles/goalpub.dir/src/goalpub.cpp.o
+.PHONY : src/goalpub.cpp.o
+
+src/goalpub.i: src/goalpub.cpp.i
+.PHONY : src/goalpub.i
+
+# target to preprocess a source file
+src/goalpub.cpp.i:
+	$(MAKE) -f CMakeFiles/goalpub.dir/build.make CMakeFiles/goalpub.dir/src/goalpub.cpp.i
+.PHONY : src/goalpub.cpp.i
+
+src/goalpub.s: src/goalpub.cpp.s
+.PHONY : src/goalpub.s
+
+# target to generate assembly for a file
+src/goalpub.cpp.s:
+	$(MAKE) -f CMakeFiles/goalpub.dir/build.make CMakeFiles/goalpub.dir/src/goalpub.cpp.s
+.PHONY : src/goalpub.cpp.s
+
 src/image_pub_nav.o: src/image_pub_nav.cpp.o
 .PHONY : src/image_pub_nav.o
 
@@ -1386,6 +1462,54 @@ src/newplan.cpp.s:
 	$(MAKE) -f CMakeFiles/newplan.dir/build.make CMakeFiles/newplan.dir/src/newplan.cpp.s
 .PHONY : src/newplan.cpp.s
 
+src/obstcale_avoid.o: src/obstcale_avoid.cpp.o
+.PHONY : src/obstcale_avoid.o
+
+# target to build an object file
+src/obstcale_avoid.cpp.o:
+	$(MAKE) -f CMakeFiles/obstcale_avoid.dir/build.make CMakeFiles/obstcale_avoid.dir/src/obstcale_avoid.cpp.o
+.PHONY : src/obstcale_avoid.cpp.o
+
+src/obstcale_avoid.i: src/obstcale_avoid.cpp.i
+.PHONY : src/obstcale_avoid.i
+
+# target to preprocess a source file
+src/obstcale_avoid.cpp.i:
+	$(MAKE) -f CMakeFiles/obstcale_avoid.dir/build.make CMakeFiles/obstcale_avoid.dir/src/obstcale_avoid.cpp.i
+.PHONY : src/obstcale_avoid.cpp.i
+
+src/obstcale_avoid.s: src/obstcale_avoid.cpp.s
+.PHONY : src/obstcale_avoid.s
+
+# target to generate assembly for a file
+src/obstcale_avoid.cpp.s:
+	$(MAKE) -f CMakeFiles/obstcale_avoid.dir/build.make CMakeFiles/obstcale_avoid.dir/src/obstcale_avoid.cpp.s
+.PHONY : src/obstcale_avoid.cpp.s
+
+src/odom_correct.o: src/odom_correct.cpp.o
+.PHONY : src/odom_correct.o
+
+# target to build an object file
+src/odom_correct.cpp.o:
+	$(MAKE) -f CMakeFiles/odom_correct.dir/build.make CMakeFiles/odom_correct.dir/src/odom_correct.cpp.o
+.PHONY : src/odom_correct.cpp.o
+
+src/odom_correct.i: src/odom_correct.cpp.i
+.PHONY : src/odom_correct.i
+
+# target to preprocess a source file
+src/odom_correct.cpp.i:
+	$(MAKE) -f CMakeFiles/odom_correct.dir/build.make CMakeFiles/odom_correct.dir/src/odom_correct.cpp.i
+.PHONY : src/odom_correct.cpp.i
+
+src/odom_correct.s: src/odom_correct.cpp.s
+.PHONY : src/odom_correct.s
+
+# target to generate assembly for a file
+src/odom_correct.cpp.s:
+	$(MAKE) -f CMakeFiles/odom_correct.dir/build.make CMakeFiles/odom_correct.dir/src/odom_correct.cpp.s
+.PHONY : src/odom_correct.cpp.s
+
 src/serial_by_keyboard.o: src/serial_by_keyboard.cpp.o
 .PHONY : src/serial_by_keyboard.o
 
@@ -1492,6 +1616,7 @@ help:
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_AprilTagDetectionArray"
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_PoseStampedArray"
 	@echo "... _nav_april_laser_odom_generate_messages_check_deps_command"
+	@echo "... _nav_april_laser_odom_generate_messages_check_deps_newodom"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_py"
@@ -1513,6 +1638,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... goalpub"
 	@echo "... image_pub_nav"
 	@echo "... install"
 	@echo "... install/local"
@@ -1540,6 +1666,8 @@ help:
 	@echo "... nodelet_generate_messages_cpp"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_py"
+	@echo "... obstcale_avoid"
+	@echo "... odom_correct"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
@@ -1583,6 +1711,9 @@ help:
 	@echo "... src/fake_topic_pub.o"
 	@echo "... src/fake_topic_pub.i"
 	@echo "... src/fake_topic_pub.s"
+	@echo "... src/goalpub.o"
+	@echo "... src/goalpub.i"
+	@echo "... src/goalpub.s"
 	@echo "... src/image_pub_nav.o"
 	@echo "... src/image_pub_nav.i"
 	@echo "... src/image_pub_nav.s"
@@ -1604,6 +1735,12 @@ help:
 	@echo "... src/newplan.o"
 	@echo "... src/newplan.i"
 	@echo "... src/newplan.s"
+	@echo "... src/obstcale_avoid.o"
+	@echo "... src/obstcale_avoid.i"
+	@echo "... src/obstcale_avoid.s"
+	@echo "... src/odom_correct.o"
+	@echo "... src/odom_correct.i"
+	@echo "... src/odom_correct.s"
 	@echo "... src/serial_by_keyboard.o"
 	@echo "... src/serial_by_keyboard.i"
 	@echo "... src/serial_by_keyboard.s"

@@ -7,7 +7,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
   <node pkg="nav_april_laser_odom" type="serial_navnew" name="serial_navnew"/>
   <include file="/home/nrsl_nuc/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch" />
   <node pkg="nav_april_laser_odom" type="image_pub_nav" name="image_pub_nav"/>
-  <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector">
+  <node pkg="nav_april_laser_odom" type="apriltag_detector_nav_node" name="apriltag_nav_detector" output="screen">
     <rosparam param="tag_descriptions">[
       {id: 0, size: 0.034, x: 0.0, y: -0.0, z: 0.0},
       {id: 1, size: 0.034, x: 0.0, y: -0.6, z: 0.0},
@@ -70,7 +70,7 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
       {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
     </rosparam>
   </node>
-  <node pkg="nav_april_laser_odom" type="odom_correct" name="odom_correct" output="screen"/>
+  <node pkg="nav_april_laser_odom" type="odom_correct" name="odom_correct"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
   <!--include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" /-->
   

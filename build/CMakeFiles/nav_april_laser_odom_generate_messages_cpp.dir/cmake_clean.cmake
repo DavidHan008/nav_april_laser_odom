@@ -3,6 +3,7 @@ FILE(REMOVE_RECURSE
   "devel/include/nav_april_laser_odom/AprilTagDetectionArray.h"
   "devel/include/nav_april_laser_odom/AprilTagDetection.h"
   "devel/include/nav_april_laser_odom/command.h"
+  "devel/include/nav_april_laser_odom/newodom.h"
   "devel/include/nav_april_laser_odom/PoseStampedArray.h"
 )
 

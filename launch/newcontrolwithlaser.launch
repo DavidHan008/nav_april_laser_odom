@@ -70,11 +70,11 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
       {id: 49, size: 0.034, x: 0.0, y: 0.0, z: 0.0}]
     </rosparam>
   </node>
-  <node pkg="nav_april_laser_odom" type="tf_listener" name="tf_listener" output="screen"/>
+  <node pkg="nav_april_laser_odom" type="odom_correct" name="odom_correct" output="screen"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_april_laser_odom)/maps/blank_map.yaml"/>
   <!--include file="$(find nav_april_laser_odom)/launch/fake_move_base.launch" /-->
   
-  <!--node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /-->
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" />
   <!--node pkg="slam_karto" type="slam_karto" name="slam_karto">
     <remap from="scan" to="scan"/>
     <param name="odom_frame" value="odom"/>
@@ -85,5 +85,6 @@ Assumes an 'odom_combined' frame, that provides reasonably accurate odometry
   <node pkg="tf" type="static_transform_publisher" name="world1_world2_broadcaster" args="0 0 0 0 0 0 /odom /map 100" />
   <!--node pkg="nav_april_laser_odom" type="movesquare" name="movesquare"/-->
   <node pkg="nav_april_laser_odom" type="newplan" name="newplan" output="screen"/>
+  <node pkg="nav_april_laser_odom" type="obstcale_avoid" name="obstcale_avoid" output="screen"/>
   <!--node pkg="nav_april_laser_odom" type="newcommand" name="newcommand" output="screen"/-->
 </launch>

@@ -6,12 +6,16 @@
 #include<ros/timer.h>
 #include<nav_msgs/Odometry.h>
 #include<std_msgs/String.h>
-double goal_x=0,goal_theta=0;
+#include<nav_april_laser_odom/command.h>
+#include<nav_april_laser_odom/newodom.h>
+double goal_x=0,goal_y=0,goal_theta=0;
 double current_x,current_y,current_theta;
 ros::Time t_last;
 double last_x=0,last_y=0,last_theta=0;
 double v_x,v_y,v_theta;
 double abs_x,abs_y,abs_theta;
+bool sig_;
+int state_robot;
 //bool flag_x,flag_y,flag_theta;
 double P_turn=1.0;
 double P_straight=1.1;
@@ -39,7 +43,13 @@ void clearTwist()
 }
 bool turnLeft()
 {
-        ROS_INFO_STREAM(goal_theta);
+    bool flag_theta;
+    clearTwist();
+//同时矫正x
+
+//同时矫正y
+//主要跟踪角度theta
+        ROS_INFO("goal_theta:%f",goal_theta);
         if(goal_theta==M_PI&&current_theta<0)
         {
             goal_theta=-M_PI;
@@ -49,9 +59,16 @@ bool turnLeft()
             goal_theta=M_PI;
         }
     double dtheta=goal_theta-current_theta;
+    if(dtheta>M_PI)
+    {
+        dtheta-=2*M_PI;
+    }
+    else if(dtheta<-M_PI)
+    {
+        dtheta+=2*M_PI;
+    }
     ROS_INFO("dtheta is%f",dtheta);
-    bool flag_theta;
-    clearTwist();
+
     if(fabs(dtheta)>=theta_tolerance)
     {
         cmdvel.angular.z=std::max(std::min(P_turn*dtheta,v_turnmax),-v_turnmax);
@@ -60,18 +77,27 @@ bool turnLeft()
     }
     else
     {
-        ROS_INFO("i am done!");
+        //if(fabs(v_x)<0.001&&fabs(v_y)<0.001&&fabs(v_theta)<0.0005)
+        if(sig_)
+        {
+            ROS_INFO("i am done!");
+            flag=4;
+            flag_theta=true;
+        }
         clearTwist();
-        cmdvel.angular.z=-cmdvel.angular.z*0.35;
+        //cmdvel.angular.z=-cmdvel.angular.z*0.15;
         control_pub.publish(cmdvel);
-
-        flag=4;
-        flag_theta=true;
     }
     return flag_theta;
 }
 bool turnRight()
 {
+    bool flag_theta;
+    clearTwist();
+//同时矫正x
+//同时矫正y
+//主要跟踪角度theta
+    ROS_INFO("goal_theta:%f",goal_theta);
         if(goal_theta==M_PI&&current_theta<0)
         {
             goal_theta=-M_PI;
@@ -82,8 +108,14 @@ bool turnRight()
         }
     double dtheta=goal_theta-current_theta;
     //ROS_INFO("dtheta is%f",dtheta);
-    bool flag_theta;
-    clearTwist();
+    if(dtheta>M_PI)
+    {
+        dtheta-=2*M_PI;
+    }
+    else if(dtheta<-M_PI)
+    {
+        dtheta+=2*M_PI;
+    }
     if(fabs(dtheta)>=theta_tolerance)
     {
         cmdvel.angular.z=std::max(std::min(P_turn*dtheta,v_turnmax),-v_turnmax);
@@ -92,18 +124,23 @@ bool turnRight()
     }
     else
     {
-        ROS_INFO("i am done!");
+        //if(fabs(v_x)<0.001&&fabs(v_y)<0.001&&fabs(v_theta)<0.0005)
+        if(sig_)
+        {
+            ROS_INFO("i am done!");
+            flag=4;
+            flag_theta=true;
+        }
         clearTwist();
+        //cmdvel.angular.z=-cmdvel.angular.z*0.15;
         control_pub.publish(cmdvel);
-        cmdvel.angular.z=-cmdvel.angular.z*0.35;
-        flag=4;
-        flag_theta=true;
     }
     return flag_theta;
 }
 bool goStraight()
 {
     double dx=goal_x-current_x;
+    ROS_INFO("goal:%f,current_x:%f,dx:%f",goal_x,current_x,dx);
     bool flag_x;
     clearTwist();
     if(fabs(dx)>=xy_tolerance)
@@ -114,24 +151,29 @@ bool goStraight()
     }
     else
     {
-        ROS_INFO("i am done!");
-        ROS_INFO_STREAM(current_x);
+        //if(fabs(v_x)<0.001&&fabs(v_y)<0.001&&fabs(v_theta)<0.0005)
+        if(sig_)
+        {
+            ROS_INFO("i am done!");
+            ROS_INFO_STREAM(current_x);
+            flag=4;
+            flag_x=true;
+        }
         clearTwist();
         control_pub.publish(cmdvel);
-        flag=4;
-        flag_x=true;
     }
     return flag_x;
 }
-void odomCB(const nav_msgs::Odometry::ConstPtr msg)
+
+
+void odomCB(const nav_april_laser_odom::newodom::ConstPtr msg)
 {
-    //ROS_INFO_STREAM("hahahha");
-    ros::Time t_now=ros::Time::now();
+    sig_=msg->k;
     tf::Quaternion q;
-    q.setW(msg->pose.pose.orientation.w);
-    q.setX(msg->pose.pose.orientation.x);
-    q.setY(msg->pose.pose.orientation.y);
-    q.setZ(msg->pose.pose.orientation.z);
+    q.setW(msg->odom.pose.pose.orientation.w);
+    q.setX(msg->odom.pose.pose.orientation.x);
+    q.setY(msg->odom.pose.pose.orientation.y);
+    q.setZ(msg->odom.pose.pose.orientation.z);
     current_theta=q.getAngle() * q.getAxis().getZ();
     if(current_theta>M_PI)
     {
@@ -143,37 +185,32 @@ void odomCB(const nav_msgs::Odometry::ConstPtr msg)
     }
     if(-0.1745<current_theta&&current_theta<0.1745)//0 degree
     {
-        current_x=msg->pose.pose.position.x;
-        current_y=msg->pose.pose.position.y;
+        //state_robot=0;
+        current_x=msg->odom.pose.pose.position.x;
+        current_y=msg->odom.pose.pose.position.y;
     }
     else if(1.3963<current_theta&&current_theta<1.7453)//90 degree
     {
-        current_x=msg->pose.pose.position.y;
-        current_y=-msg->pose.pose.position.x;
+        //state_robot=1;
+        current_x=msg->odom.pose.pose.position.y;
+        current_y=-msg->odom.pose.pose.position.x;
     }
     else if(2.967<current_theta||current_theta<-2.967)//180 degree
     {
-        current_x=-msg->pose.pose.position.x;
-        current_y=-msg->pose.pose.position.y;
+        //state_robot=2;
+        current_x=-msg->odom.pose.pose.position.x;
+        current_y=-msg->odom.pose.pose.position.y;
     }
     else if(-1.7453<current_theta&&current_theta<-1.3963)//-90 degree
     {
-        current_x=-msg->pose.pose.position.y;
-        current_y=msg->pose.pose.position.x;
+        //state_robot=3;
+        current_x=-msg->odom.pose.pose.position.y;
+        current_y=msg->odom.pose.pose.position.x;
     }
 ROS_INFO("current_theta:%f",current_theta*180/3.1415926);
 
-   ros::Duration dt=t_now-t_last;
-    v_x=(current_x-last_x)/dt.toSec();
-    v_y=(current_y-last_y)/dt.toSec();
-    v_theta=(current_theta-last_theta)/dt.toSec();
-    ROS_INFO("v_x:%f,v_y:%f,v_theta:%f",v_x,v_y,v_theta);
-        last_x=current_x;
-        last_y=current_y;
-        last_theta=current_theta;
-        t_last=t_now;
-
 }
+
 void timeCB(const ros::TimerEvent&)
 {
     if(firsttime==true)
@@ -187,13 +224,10 @@ void timeCB(const ros::TimerEvent&)
     else if(flag==3) goStraight();
     else if(flag==4)
     {
-        if(fabs(v_x)<0.001&&fabs(v_y)<0.001&&fabs(v_theta)<0.0005)
-        {
             reachOK.data=ok;
             reachflag.publish(reachOK);
-        }
-        clearTwist();
-        control_pub.publish(cmdvel);
+            clearTwist();
+            control_pub.publish(cmdvel);
     }
     else
     {
@@ -201,42 +235,56 @@ void timeCB(const ros::TimerEvent&)
         control_pub.publish(cmdvel);
     }
 }
-void commandCB(const std_msgs::String::ConstPtr msg)
+void commandCB(const nav_april_laser_odom::command::ConstPtr msg)
 {
     firsttime=false;
-    int flagg=atoi((const char * )(msg->data.data()));
+    //int flagg=atoi((const char * )(msg->data.data()));
+    int flagg=msg->command;
     abs_x=current_x;
     abs_y=current_y;
     abs_theta=current_theta;
     ROS_INFO_STREAM(flagg);
     ROS_INFO("abs_x:%f,abs_y:%f,abs_theta:%f",abs_x,abs_y,abs_theta*180/3.1415926);
+
+    if(-0.1745<abs_theta&&abs_theta<0.1745)//0 degree
+    {
+        state_robot=0;
+        goal_x=msg->pose.x;
+        goal_y=msg->pose.y;
+    }
+    else if(1.3963<abs_theta&&abs_theta<1.7453)//90 degree
+    {
+        state_robot=1;
+        goal_x=msg->pose.y;
+        goal_y=-msg->pose.x;
+    }
+    else if(2.967<abs_theta||abs_theta<-2.967)//180 degree
+    {
+        state_robot=2;
+        goal_x=-msg->pose.x;
+        goal_y=-msg->pose.y;
+    }
+    else if(-1.7453<abs_theta&&abs_theta<-1.3963)//-90 degree
+    {
+        state_robot=3;
+        goal_x=-msg->pose.y;
+        goal_y=msg->pose.x;
+    }
+
     if(flagg==1)//turn left
     {
         flag=1;
-        goal_theta=abs_theta+M_PI/2;
-        if(fabs(goal_theta)<0.1745) goal_theta=0;
-        else if(fabs(goal_theta-M_PI/2)<0.1745) goal_theta=M_PI/2;
-        else if(fabs(goal_theta+M_PI/2)<0.1745) goal_theta=-M_PI/2;
-        //else if(fabs(goal_theta+M_PI)<0.1745) goal_theta=M_PI;
-        else if(fabs(goal_theta-M_PI)<0.1745&&goal_theta>0) goal_theta=M_PI;
-        else if(fabs(goal_theta+M_PI)<0.1745&&goal_theta<0) goal_theta=-M_PI;
-
+        goal_theta=msg->pose.theta;
     }
     else if(flagg==2)//turn right
     {
         flag=2;
-        goal_theta=abs_theta-M_PI/2;
-        if(fabs(goal_theta)<0.1745) goal_theta=0;
-        else if(fabs(goal_theta-M_PI/2)<0.1745) goal_theta=M_PI/2;
-        else if(fabs(goal_theta+M_PI/2)<0.1745) goal_theta=-M_PI/2;
-        else if(fabs(goal_theta-M_PI)<0.1745&&goal_theta>0) goal_theta=M_PI;
-        else if(fabs(goal_theta+M_PI)<0.1745&&goal_theta<0) goal_theta=-M_PI;
+        goal_theta=msg->pose.theta;
     }
     else if(flagg==3)//go up
     {
         flag=3;
-        goal_theta=abs_theta;
-        goal_x=abs_x+1.21;
+        //goal_x=msg->pose.x;
     }
     else if(flagg==4)//stop
     {
@@ -260,4 +308,6 @@ int main(int argc,char** argv)
     ROS_INFO_STREAM("wxf");
     ros::spin();
 }
+
+
 

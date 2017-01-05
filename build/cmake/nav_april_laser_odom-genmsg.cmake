@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "nav_april_laser_odom: 4 messages, 0 services")
+message(STATUS "nav_april_laser_odom: 5 messages, 0 services")
 
 set(MSG_I_FLAGS "-Inav_april_laser_odom:/home/wxf/catkin_ws/src/nav_april_laser_odom/msg;-Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/indigo/share/nav_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/indigo/share/actionlib_msgs/cmake/../msg")
 
@@ -28,6 +28,11 @@ add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
 add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:geometry_msgs/Quaternion:std_msgs/Header:geometry_msgs/Pose"
+)
+
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg" NAME_WE)
+add_custom_target(_nav_april_laser_odom_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "nav_april_laser_odom" "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg" "geometry_msgs/Point:geometry_msgs/PoseWithCovariance:geometry_msgs/TwistWithCovariance:geometry_msgs/Vector3:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Twist:nav_msgs/Odometry:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
@@ -60,6 +65,12 @@ _generate_msg_cpp(nav_april_laser_odom
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_cpp(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/TwistWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/indigo/share/nav_msgs/cmake/../msg/Odometry.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_cpp(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
@@ -85,6 +96,8 @@ add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odo
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_cpp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
@@ -117,6 +130,12 @@ _generate_msg_lisp(nav_april_laser_odom
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_lisp(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/TwistWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/indigo/share/nav_msgs/cmake/../msg/Odometry.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_lisp(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
@@ -142,6 +161,8 @@ add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_od
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_lisp _nav_april_laser_odom_generate_messages_check_deps_${_filename})
@@ -174,6 +195,12 @@ _generate_msg_py(nav_april_laser_odom
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/nav_april_laser_odom
 )
 _generate_msg_py(nav_april_laser_odom
+  "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/TwistWithCovariance.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/indigo/share/nav_msgs/cmake/../msg/Odometry.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/nav_april_laser_odom
+)
+_generate_msg_py(nav_april_laser_odom
   "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/PoseStampedArray.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Pose.msg"
@@ -199,6 +226,8 @@ add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetectionArray.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/AprilTagDetection.msg" NAME_WE)
+add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/newodom.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/wxf/catkin_ws/src/nav_april_laser_odom/msg/command.msg" NAME_WE)
 add_dependencies(nav_april_laser_odom_generate_messages_py _nav_april_laser_odom_generate_messages_check_deps_${_filename})

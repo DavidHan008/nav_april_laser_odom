@@ -138,6 +138,9 @@ target_link_libraries(newcommand ${catkin_LIBRARIES})
 
 add_executable(odom_correct src/odom_correct.cpp)
 target_link_libraries(odom_correct ${catkin_LIBRARIES})
+
+add_executable(obstcale_avoid src/obstcale_avoid.cpp)
+target_link_libraries(obstcale_avoid ${catkin_LIBRARIES})
 #############
 ## Install ##image_pub
 #############
